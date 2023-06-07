@@ -101,4 +101,64 @@ public class ClienteData {
         return clientes;
     }        
 
+        public void modificarCliente(Cliente cliente){
+        
+        String sql = "UPDATE cliente SET apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idAlumno = ? ";
+        PreparedStatement ps = null;
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cliente.getApellido());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getDomicilio());
+            ps.setInt(4, cliente.getTelefono());
+            ps.setInt(5, cliente.getIdCliente());
+            int exito = ps.executeUpdate();
+            
+            if (exito == 1){
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");               
+            }else{
+                JOptionPane.showMessageDialog(null, "El cliente no existe.");
+            }
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,msjeError+"cliente"+ex.getMessage());
+        }
+        
+    }
+        
+        public void eliminarCliente(int id){
+        
+        try{
+            String sql = "UPDATE cliente SET estado = 0 WHERE idCliente = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            ps.close();
+            if (fila==1){
+                JOptionPane.showMessageDialog(null,"Se elimino al cliente.");
+            }
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, msjeError+"cliente"+ex.getMessage());
+        }
+    }
+
+        public void activarCliente(int id){
+        
+        try{
+            String sql = "UPDATE cliente SET estado = 1 WHERE idCliente = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            ps.close();
+            if (fila==1){
+                JOptionPane.showMessageDialog(null,"Se activó el cliente.");
+            }
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, msjeError+"cliente."+ex.getMessage());
+        }
+    }
+
 }
