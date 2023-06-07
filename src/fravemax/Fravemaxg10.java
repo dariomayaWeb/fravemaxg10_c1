@@ -1,5 +1,7 @@
 
-package Modelo;
+package fravemax;
+
+import Modelo.Proveedor;
 
 
 public class Fravemaxg10 {

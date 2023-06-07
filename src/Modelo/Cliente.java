@@ -5,28 +5,33 @@ package Modelo;
 public class Cliente {
     
     private int idCliente;
-    private String nombre;
     private String apellido;
+    private String nombre;
     private String domicilio;
     private int telefono;
+    private boolean estado;
+
 
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String domicilio, int telefono) {
-        this.nombre = nombre;
+    public Cliente(String apellido, String nombre, String domicilio, int telefono, boolean estado) {
         this.apellido = apellido;
+        this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
-    public Cliente(int idCliente, String nombre, String apellido, String domicilio, int telefono) {
+    public Cliente(int idCliente, String apellido, String nombre, String domicilio, int telefono, boolean estado) {
         this.idCliente = idCliente;
-        this.nombre = nombre;
         this.apellido = apellido;
+        this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
+
 
     public int getIdCliente() {
         return idCliente;
@@ -68,9 +73,18 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
+        return  idCliente +  " apellido= " + apellido + " nombre= " + nombre;
     }
     
     

@@ -7,29 +7,29 @@ import java.time.LocalDate;
 public class Venta {
     private int idVenta;
     private LocalDate fecha;
-    private int idCliente;
+    private Cliente cliente;
     private int cantidad;
     private double precio;
-    private int idProducto;
+    private Producto producto;
 
     public Venta() {
     }
 
-    public Venta(LocalDate fecha, int idCliente, int cantidad, double precio, int idProducto) {
+    public Venta(LocalDate fecha, Cliente cliente, int cantidad, double precio, Producto producto) {
         this.fecha = fecha;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.idProducto = idProducto;
+        this.producto = producto;
     }
 
-    public Venta(int idVenta, LocalDate fecha, int idCliente, int cantidad, double precio, int idProducto) {
+    public Venta(int idVenta, LocalDate fecha, Cliente cliente, int cantidad, double precio, Producto producto) {
         this.idVenta = idVenta;
         this.fecha = fecha;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.idProducto = idProducto;
+        this.producto = producto;
     }
 
     public int getIdVenta() {
@@ -48,13 +48,15 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+
 
     public int getCantidad() {
         return cantidad;
@@ -72,21 +74,18 @@ public class Venta {
         this.precio = precio;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
-    
+
     @Override
     public String toString() {
-        return  + idVenta + ", fecha=" + fecha + ", idCliente=" + idCliente + ", cantidad=" + cantidad + ", precio=" + precio + ", idProducto=" + idProducto + '}';
+        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", cliente=" + cliente + ", cantidad=" + cantidad + ", precio=" + precio + ", producto=" + producto + '}';
     }
-    
-           
 
-    
     
 }
