@@ -3,33 +3,36 @@ package Modelo;
 
 
 public class Proveedor {
-    private int proveedor;
+    private int idProveedor;
     private String razonSocial;
     private String domicilio;
     private int telefono;
+    private boolean estado;
 
     public Proveedor() {
     }
 
-    public Proveedor(String razonSocial, String domicilio, int telefono) {
+    public Proveedor(String razonSocial, String domicilio, int telefono, boolean estado) {
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
-    public Proveedor(int proveedor, String razonSocial, String domicilio, int telefono) {
-        this.proveedor = proveedor;
+    public Proveedor(int idProveedor, String razonSocial, String domicilio, int telefono, boolean estado) {
+        this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
-    public int getProveedor() {
-        return proveedor;
+    public int getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setProveedor(int proveedor) {
-        this.proveedor = proveedor;
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getRazonSocial() {
@@ -56,11 +59,19 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Proveedor{" + "proveedor=" + proveedor + ", razonSocial=" + razonSocial + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
+        return "Proveedor{" + "idProveedor=" + idProveedor + ", razonSocial=" + razonSocial + ", domicilio=" + domicilio + ", telefono=" + telefono + ", estado=" + estado + '}';
     }
-    
+
     
     
 }
