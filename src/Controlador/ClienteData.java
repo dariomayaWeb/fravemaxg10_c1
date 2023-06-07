@@ -96,14 +96,14 @@ public class ClienteData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+"cliente." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError+"cliente" + ex.getMessage());
         }
         return clientes;
     }        
 
         public void modificarCliente(Cliente cliente){
         
-        String sql = "UPDATE cliente SET apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idAlumno = ? ";
+        String sql = "UPDATE cliente SET apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idCliente = ? ";
         PreparedStatement ps = null;
         
         try{
@@ -157,7 +157,7 @@ public class ClienteData {
             }
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, msjeError+"cliente."+ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError+"cliente"+ex.getMessage());
         }
     }
 
