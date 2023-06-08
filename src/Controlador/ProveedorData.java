@@ -29,7 +29,7 @@ public class ProveedorData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,proveedor.getRazonSocial());
             ps.setString(2,proveedor.getDomicilio());
-            ps.setInt(3,proveedor.getTelefono());
+            ps.setString(3,proveedor.getTelefono());
             ps.setBoolean(4,proveedor.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -57,7 +57,7 @@ public class ProveedorData {
                 proveedor.setIdProveedor(id); //tambien se puede poner getInt(num de columna)
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
-                proveedor.setTelefono(rs.getInt("telefono"));
+                proveedor.setTelefono(rs.getString("telefono"));
                 proveedor.setEstado(rs.getBoolean("estado"));
 
             } else {
@@ -84,7 +84,7 @@ public class ProveedorData {
                 proveedor.setIdProveedor(rs.getInt("idProveedor")); //tambien se puede poner getInt(num de columna)
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
-                proveedor.setTelefono(rs.getInt("telefono"));
+                proveedor.setTelefono(rs.getString("telefono"));
                 proveedor.setEstado(rs.getBoolean("estado"));
                 proveedores.add(proveedor);
             }
@@ -105,7 +105,7 @@ public class ProveedorData {
             ps = con.prepareStatement(sql);
             ps.setString(1, proveedor.getRazonSocial());
             ps.setString(2, proveedor.getDomicilio());
-            ps.setInt(3, proveedor.getTelefono());
+            ps.setString(3, proveedor.getTelefono());
             ps.setInt(4, proveedor.getIdProveedor());
             int exito = ps.executeUpdate();
             

@@ -32,7 +32,7 @@ public class ClienteData {
             ps.setString(1, cliente.getApellido());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDomicilio());
-            ps.setInt(4, cliente.getTelefono());
+            ps.setString(4, cliente.getTelefono());
             ps.setBoolean(5, cliente.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -61,7 +61,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDomicilio(rs.getString("domicilio"));
-                cliente.setTelefono(rs.getInt("telefono"));
+                cliente.setTelefono(rs.getString("telefono"));
                 cliente.setEstado(rs.getBoolean("estado"));
 
             } else {
@@ -89,7 +89,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDomicilio(rs.getString("domicilio"));
-                cliente.setTelefono(rs.getInt("telefono"));
+                cliente.setTelefono(rs.getString("telefono"));
                 cliente.setEstado(rs.getBoolean("estado"));
                 clientes.add(cliente);
             }
@@ -111,7 +111,7 @@ public class ClienteData {
             ps.setString(1, cliente.getApellido());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDomicilio());
-            ps.setInt(4, cliente.getTelefono());
+            ps.setString(4, cliente.getTelefono());
             ps.setInt(5, cliente.getIdCliente());
             int exito = ps.executeUpdate();
             
