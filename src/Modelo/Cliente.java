@@ -8,14 +8,14 @@ public class Cliente {
     private String apellido;
     private String nombre;
     private String domicilio;
-    private int telefono;
+    private String telefono;
     private boolean estado;
 
 
     public Cliente() {
     }
 
-    public Cliente(String apellido, String nombre, String domicilio, int telefono, boolean estado) {
+    public Cliente(String apellido, String nombre, String domicilio, String telefono, boolean estado) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -23,7 +23,7 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public Cliente(int idCliente, String apellido, String nombre, String domicilio, int telefono, boolean estado) {
+    public Cliente(int idCliente, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
         this.idCliente = idCliente;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -65,11 +65,11 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

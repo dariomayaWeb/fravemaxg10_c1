@@ -9,28 +9,22 @@ public class Compra {
     private int idCompra;
     private Proveedor proveedor;
     private LocalDate fecha;
-    private int cantidad;
-    private double precioCosto;
-    private Producto producto;
+    private boolean estado;
 
     public Compra() {
     }
 
-    public Compra(Proveedor proveedor, LocalDate fecha, int cantidad, double precioCosto, Producto producto) {
+    public Compra(Proveedor proveedor, LocalDate fecha, boolean estado) {
         this.proveedor = proveedor;
         this.fecha = fecha;
-        this.cantidad = cantidad;
-        this.precioCosto = precioCosto;
-        this.producto = producto;
+        this.estado = estado;
     }
 
-    public Compra(int idCompra, Proveedor proveedor, LocalDate fecha, int cantidad, double precioCosto, Producto producto) {
+    public Compra(int idCompra, Proveedor proveedor, LocalDate fecha, boolean estado) {
         this.idCompra = idCompra;
         this.proveedor = proveedor;
         this.fecha = fecha;
-        this.cantidad = cantidad;
-        this.precioCosto = precioCosto;
-        this.producto = producto;
+        this.estado = estado;
     }
 
     public int getIdCompra() {
@@ -49,8 +43,6 @@ public class Compra {
         this.proveedor = proveedor;
     }
 
-    
-
     public LocalDate getFecha() {
         return fecha;
     }
@@ -59,34 +51,18 @@ public class Compra {
         this.fecha = fecha;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPrecioCosto() {
-        return precioCosto;
-    }
-
-    public void setPrecioCosto(double precioCosto) {
-        this.precioCosto = precioCosto;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Compra{" + "idCompra=" + idCompra + ", proveedor=" + proveedor + ", fecha=" + fecha + ", cantidad=" + cantidad + ", precioCosto=" + precioCosto + ", producto=" + producto + '}';
+        return "Compra{" + "idCompra=" + idCompra + ", proveedor=" + proveedor + ", fecha=" + fecha + ", estado=" + estado + '}';
     }
 
-    
+   
 }

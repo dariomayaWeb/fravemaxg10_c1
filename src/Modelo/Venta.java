@@ -8,28 +8,22 @@ public class Venta {
     private int idVenta;
     private LocalDate fecha;
     private Cliente cliente;
-    private int cantidad;
-    private double precio;
-    private Producto producto;
+    private boolean estado;
 
     public Venta() {
     }
 
-    public Venta(LocalDate fecha, Cliente cliente, int cantidad, double precio, Producto producto) {
+    public Venta(LocalDate fecha, Cliente cliente, boolean estado) {
         this.fecha = fecha;
         this.cliente = cliente;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.producto = producto;
+        this.estado = estado;
     }
 
-    public Venta(int idVenta, LocalDate fecha, Cliente cliente, int cantidad, double precio, Producto producto) {
+    public Venta(int idVenta, LocalDate fecha, Cliente cliente, boolean estado) {
         this.idVenta = idVenta;
         this.fecha = fecha;
         this.cliente = cliente;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.producto = producto;
+        this.estado = estado;
     }
 
     public int getIdVenta() {
@@ -56,35 +50,17 @@ public class Venta {
         this.cliente = cliente;
     }
 
-
-
-    public int getCantidad() {
-        return cantidad;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", cliente=" + cliente + ", cantidad=" + cantidad + ", precio=" + precio + ", producto=" + producto + '}';
+        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", cliente=" + cliente + ", estado=" + estado + '}';
     }
 
     
