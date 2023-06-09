@@ -140,9 +140,18 @@ public class ProductoData {
             ps.setInt(6, producto.getIdProducto());
             ps.executeUpdate();
             ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+"  modificar, " + ex.getMessage());
+           int exito = ps.executeUpdate();
+            
+            if (exito == 1){
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");               
+            }else{
+                JOptionPane.showMessageDialog(null, "El producto no existe.");
+            }
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,msjeError+"producto"+ex.getMessage());
         }
+       
         
         
         
