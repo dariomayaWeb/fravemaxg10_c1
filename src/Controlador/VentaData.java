@@ -24,9 +24,10 @@ public class VentaData {
 
     public void guardarVenta(Venta venta) {
         try {
-            PreparedStatement ps = con.prepareStatement("insert into venta(fecha,idCliente) values(?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("insert into venta(fecha,idCliente,estado) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setDouble(2, venta.getCliente().getIdCliente());
+            ps.setBoolean(3, true);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -39,7 +40,7 @@ public class VentaData {
         }
     }
     
-    public Venta buscarId(int id){
+    public Venta buscarVenta(int id){
         Venta venta=null;
         ClienteData clienteData=new ClienteData();
         try {
@@ -52,11 +53,9 @@ public class VentaData {
                 venta.setIdVenta(id);
                 venta.setFecha(rs.getDate("fecha").toLocalDate());
                 venta.setCliente(clienteData.buscarCliente(rs.getInt("idCliente")));
-
+                venta.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
-            rs.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError+" en buscar venta, " + ex.getMessage());
         }
@@ -65,7 +64,7 @@ public class VentaData {
     
     public void modificarVenta(Venta venta){
           try {
-            PreparedStatement ps = con.prepareStatement("UPDATE FROM venta SET fecha=?,idCliente=? WHERE idVenta=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE venta SET fecha=?,idCliente=? WHERE idVenta=?");
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setInt(2, venta.getCliente().getIdCliente());
             ps.setInt(3, venta.getIdVenta());
@@ -78,30 +77,41 @@ public class VentaData {
     
     public void eliminarVenta(int id){
          try {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM venta WHERE idVenta=?;");
+            PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=0 WHERE idVenta=?;");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,msjeError+ " eliminar venta, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,msjeError+ " venta, " + ex.getMessage());
         }
     }
     
-    public List<Compra> lista(){
-         ArrayList<Compra> lista = new ArrayList();
+    public void activarVenta(int id){
+         try {
+            PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=1 WHERE idVenta=?;");
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,msjeError+ " venta, " + ex.getMessage());
+        }
+    }
+    
+    public List<Venta> lista(){
+         ArrayList<Venta> lista = new ArrayList();
          ClienteData clienteData = new ClienteData();
             try {
-            PreparedStatement ps = con.prepareStatement("select * from venta;");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta WHERE estado=1");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Venta venta = new Venta();
                 venta.setIdVenta(rs.getInt("idVenta"));
                 venta.setFecha(rs.getDate("fecha").toLocalDate());
                 venta.setCliente(clienteData.buscarCliente(rs.getInt("idCliente")));
+                venta.setEstado(rs.getBoolean("estado"));
+                lista.add(venta);
             }
             ps.close();
-            rs.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en lista venta, " + ex.getMessage());
         }

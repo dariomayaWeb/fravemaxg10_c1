@@ -31,7 +31,7 @@ public class DetalleVentaData {
     
     public void guardarDetalleVenta(DetalleVenta detalleVenta) {
         try {
-            PreparedStatement ps = con.prepareStatement("insert into detalleventa (cantidad,precioVenta,idVenta,idProducto) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO detalleventa (cantidad,precioVenta,idVenta,idProducto) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, detalleVenta.getCantidad());
             ps.setDouble(2, detalleVenta.getPrecioVenta());
             ps.setInt(3, detalleVenta.getVenta().getIdVenta());
@@ -42,13 +42,12 @@ public class DetalleVentaData {
                 detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
             }
             ps.close();
-            rs.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en guardar VentaData, " + ex.getMessage());
         }
     }
 
-    public DetalleVenta buscar(int idDetalleVenta) {
+    public DetalleVenta buscarDetalleVenta(int idDetalleVenta) {
         VentaData ventaData = new VentaData();
         ProductoData productoData = new ProductoData();
         DetalleVenta detalleVenta = null;
@@ -61,11 +60,10 @@ public class DetalleVentaData {
                 detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                 detalleVenta.setCantidad(rs.getInt("cantidad"));
                 detalleVenta.setPrecioVenta(rs.getDouble("precioVenta"));
-                detalleVenta.setVenta(ventaData.buscarId(rs.getInt("idVenta")));
+                detalleVenta.setVenta(ventaData.buscarVenta(rs.getInt("idVenta")));
                 detalleVenta.setProducto(productoData.buscarProductoId(rs.getInt("idProducto")));
             }
             ps.close();
-            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,7 +95,6 @@ public class DetalleVentaData {
     }
 
     public List<DetalleVenta> listaDetalleVentas(int idVenta) {
-        ProveedorData proveedorData = new ProveedorData();
         ArrayList<DetalleVenta> listaDetalleVentas = new ArrayList();
         try {
             PreparedStatement ps = con.prepareStatement("select * from detalleventa WHERE idVenta=?");
@@ -107,13 +104,11 @@ public class DetalleVentaData {
                 detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                 detalleVenta.setCantidad(rs.getInt("cantidad"));
                 detalleVenta.setPrecioVenta(rs.getDouble("precioVenta"));
-                detalleVenta.setVenta(ventaData.buscarId(idVenta));
+                detalleVenta.setVenta(ventaData.buscarVenta(idVenta));
                 detalleVenta.setProducto(productoData.buscarProductoId(rs.getInt("idProducto")));
                 listaDetalleVentas.add(detalleVenta);
             }
             ps.close();
-            rs.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en buscar el detalle de Compras, " + ex.getMessage());
         }

@@ -41,13 +41,12 @@ public class DetalleCompraData {
                 detalleCompra.setIdDetalle(rs.getInt("idDetalle"));
             }
             ps.close();
-            rs.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en guardar CompraData, " + ex.getMessage());
         }
     }
 
-    public DetalleCompra buscar(int idDetalle) {
+    public DetalleCompra buscarDetalleCompra(int idDetalle) {
         CompraData compraData = new CompraData();
         ProductoData productoData = new ProductoData();
         DetalleCompra detalleCompra = null;
@@ -64,7 +63,6 @@ public class DetalleCompraData {
                 detalleCompra.setProducto(productoData.buscarProductoId(rs.getInt("idProducto")));
             }
             ps.close();
-            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,7 +94,6 @@ public class DetalleCompraData {
     }
 
     public List<DetalleCompra> listaDetalleCompras(int idCompra) {
-        ProveedorData proveedorData = new ProveedorData();
         ArrayList<DetalleCompra> listaDetalleCompras = new ArrayList();
         try {
             PreparedStatement ps = con.prepareStatement("select * from detallecompra WHERE idCompra=?");

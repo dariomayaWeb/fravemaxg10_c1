@@ -80,7 +80,6 @@ public class CompraData {
             }
 
             ps.close();
-            rs.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en buscar CompraData, " + ex.getMessage());
         }
