@@ -64,7 +64,7 @@ public class DetalleCompraData {
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, "Error en buscar el detalle de Compras, " + ex.getMessage());
         }
         return detalleCompra;
     }
