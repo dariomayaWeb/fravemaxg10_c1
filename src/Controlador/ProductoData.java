@@ -22,7 +22,7 @@ public class ProductoData {
 
     }
 
-    public void guardarProducto(Producto producto) throws SQLException {
+    public void guardarProducto(Producto producto)  {
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO producto(nombre,descripcion,categoria,precioActual,stock,estado) VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, producto.getNombre());
