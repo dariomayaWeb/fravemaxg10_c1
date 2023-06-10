@@ -34,15 +34,15 @@ public class VentaData {
                 venta.setIdVenta(rs.getInt("idVenta"));
             }
             ps.close();
-            rs.close();
+            JOptionPane.showMessageDialog(null, "Venta agregada con exito");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " guardar venta, " + ex.getMessage());
         }
     }
-    
-    public Venta buscarVenta(int id){
-        Venta venta=null;
-        ClienteData clienteData=new ClienteData();
+
+    public Venta buscarVenta(int id) {
+        Venta venta = null;
+        ClienteData clienteData = new ClienteData();
         try {
 
             PreparedStatement ps = con.prepareStatement("SELECT * FROM venta WHERE idVenta=?;");
@@ -57,50 +57,53 @@ public class VentaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+" en buscar venta, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " en buscar venta, " + ex.getMessage());
         }
         return venta;
     }
-    
-    public void modificarVenta(Venta venta){
-          try {
+
+    public void modificarVenta(Venta venta) {
+        try {
             PreparedStatement ps = con.prepareStatement("UPDATE venta SET fecha=?,idCliente=? WHERE idVenta=?");
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setInt(2, venta.getCliente().getIdCliente());
             ps.setInt(3, venta.getIdVenta());
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Venta modificada exitosamente");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,msjeError+ " modificar venta, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " modificar venta, " + ex.getMessage());
         }
     }
-    
-    public void eliminarVenta(int id){
-         try {
+
+    public void eliminarVenta(int id) {
+        try {
             PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=0 WHERE idVenta=?;");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Venta eliminada");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,msjeError+ " venta, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }
     }
-    
-    public void activarVenta(int id){
-         try {
+
+    public void activarVenta(int id) {
+        try {
             PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=1 WHERE idVenta=?;");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Venta activada");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,msjeError+ " venta, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }
     }
-    
-    public List<Venta> lista(){
-         ArrayList<Venta> lista = new ArrayList();
-         ClienteData clienteData = new ClienteData();
-            try {
+
+    public List<Venta> lista() {
+        ArrayList<Venta> lista = new ArrayList();
+        ClienteData clienteData = new ClienteData();
+        try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM venta WHERE estado=1");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -115,8 +118,8 @@ public class VentaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en lista venta, " + ex.getMessage());
         }
-         
-         return lista;
+
+        return lista;
     }
-    
+
 }

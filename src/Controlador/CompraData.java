@@ -23,11 +23,11 @@ public class CompraData {
 
     }
 
-    public void comprarProducto(Compra compra) {
+    public void guardarCompra(Compra compra) {
         try {
-            PreparedStatement ps = con.prepareStatement("insert into compra (idProveedor,fecha,estado) values(?,?)", Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, compra.getProveedor().getIdProveedor());
-            ps.setDate(2, Date.valueOf(compra.getFecha()));
+            PreparedStatement ps = con.prepareStatement("INSERT INTO compra (fecha, idProveedor ,estado) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setDate(1, Date.valueOf(compra.getFecha()));
+            ps.setInt(2, compra.getProveedor().getIdProveedor());
             ps.setBoolean(3, true);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -35,7 +35,7 @@ public class CompraData {
                 compra.setIdCompra(rs.getInt("idCompra"));
             }
             ps.close();
-            rs.close();
+            JOptionPane.showMessageDialog(null, "Compra guardada con exito");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en guardar CompraData, " + ex.getMessage());
         }
@@ -47,6 +47,7 @@ public class CompraData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Compra eliminada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en eliminar CompraData, " + ex.getMessage());
         }
@@ -58,6 +59,7 @@ public class CompraData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Compra dada de alta");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en eliminar CompraData, " + ex.getMessage());
         }
@@ -112,13 +114,13 @@ public class CompraData {
     public void modificarCompra(Compra compra) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE compra SET idProveedor=? ,fecha=? WHERE idCompra=?;");
-            ps.setInt(1,compra.getProveedor().getIdProveedor() );
-            ps.setDate(2,Date.valueOf(compra.getFecha()));
+            ps.setInt(1, compra.getProveedor().getIdProveedor());
+            ps.setDate(2, Date.valueOf(compra.getFecha()));
             ps.setInt(3, compra.getIdCompra());
             ps.execute();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en eliminar CompraData, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en modificar CompraData, " + ex.getMessage());
         }
     }
 }

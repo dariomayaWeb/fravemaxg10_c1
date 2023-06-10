@@ -41,6 +41,7 @@ public class DetalleCompraData {
                 detalleCompra.setIdDetalle(rs.getInt("idDetalle"));
             }
             ps.close();
+            JOptionPane.showMessageDialog(null, "Detalle de compra agregado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en guardar CompraData, " + ex.getMessage());
         }

@@ -1,4 +1,3 @@
-
 package Controlador;
 
 import Modelo.Proveedor;
@@ -12,25 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ProveedorData {
-    private Connection con = null;
-        private String msjeError = "Error al acceder a la tabla ";
 
-        public ProveedorData(){
-            
-            con = Conexion.getConexion();
-            
-        }
-          public void guardarProveedor(Proveedor proveedor) {
+    private Connection con = null;
+    private String msjeError = "Error al acceder a la tabla ";
+
+    public ProveedorData() {
+
+        con = Conexion.getConexion();
+
+    }
+
+    public void guardarProveedor(Proveedor proveedor) {
 
         String sql = "INSERT INTO proveedor (razonSocial,domicilio, telefono,  estado) VALUES (?, ?, ?, ? )";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,proveedor.getRazonSocial());
-            ps.setString(2,proveedor.getDomicilio());
-            ps.setString(3,proveedor.getTelefono());
-            ps.setBoolean(4,proveedor.isEstado());
+            ps.setString(1, proveedor.getRazonSocial());
+            ps.setString(2, proveedor.getDomicilio());
+            ps.setString(3, proveedor.getTelefono());
+            ps.setBoolean(4, proveedor.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -42,10 +42,10 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null, msjeError + " proveedor " + ex.getMessage());
         }
     }
-        
-        public Proveedor buscarProveedor(int id) {
+
+    public Proveedor buscarProveedor(int id) {
         Proveedor proveedor = null;
-        String sql = "SELECT  razonSocial, domicilio, telefono, estado FROM cliente WHERE idProveedor=?";
+        String sql = "SELECT  razonSocial, domicilio, telefono, estado FROM proveedor WHERE idProveedor=?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -66,12 +66,12 @@ public class ProveedorData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+" proveedor " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " proveedor " + ex.getMessage());
         }
         return proveedor;
     }
 
-        public List<Proveedor> listarProveedor() {
+    public List<Proveedor> listarProveedor() {
 
         List<Proveedor> proveedores = new ArrayList<>();
         try {
@@ -91,68 +91,68 @@ public class ProveedorData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+" proveedor. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + " proveedor. " + ex.getMessage());
         }
         return proveedores;
-    }        
+    }
 
-        public void modificarProveedor(Proveedor proveedor){
-        
+    public void modificarProveedor(Proveedor proveedor) {
+
         String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ? WHERE idProveedor = ? ";
         PreparedStatement ps = null;
-        
-        try{
+
+        try {
             ps = con.prepareStatement(sql);
             ps.setString(1, proveedor.getRazonSocial());
             ps.setString(2, proveedor.getDomicilio());
             ps.setString(3, proveedor.getTelefono());
             ps.setInt(4, proveedor.getIdProveedor());
             int exito = ps.executeUpdate();
-            
-            if (exito == 1){
-                JOptionPane.showMessageDialog(null, " Modificado Exitosamente.");               
-            }else{
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, " Modificado Exitosamente.");
+            } else {
                 JOptionPane.showMessageDialog(null, " El proveedor no existe.");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,msjeError+" proveedor. "+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + " proveedor. " + ex.getMessage());
         }
-        
+
     }
-        
-        public void eliminarProveedor(int id){
-        
-        try{
+
+    public void eliminarProveedor(int id) {
+
+        try {
             String sql = "UPDATE proveedor SET estado = 0 WHERE idProveedor = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             ps.close();
-            if (fila==1){
-                JOptionPane.showMessageDialog(null,"Se eliminó al proveedor");
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó al proveedor");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, msjeError+" proveedor. "+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + " proveedor. " + ex.getMessage());
         }
     }
 
-        public void activarProveedor(int id){
-        
-        try{
+    public void activarProveedor(int id) {
+
+        try {
             String sql = "UPDATE proveedor SET estado = 1 WHERE idProveedor = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             ps.close();
-            if (fila==1){
-                JOptionPane.showMessageDialog(null," Se activó al proveedor. ");
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se activó al proveedor. ");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, msjeError+" proveedor. "+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + " proveedor. " + ex.getMessage());
         }
     }
-    
+
 }

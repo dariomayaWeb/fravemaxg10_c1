@@ -1,4 +1,3 @@
-
 package Controlador;
 
 import Modelo.Cliente;
@@ -12,19 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ClienteData {
-    
-        private Connection con = null;
-        private String msjeError = "Error al acceder a la tabla ";
 
-        public ClienteData(){
-            
-            con = Conexion.getConexion();
-            
-        }
-        
-        public void guardarCliente(Cliente cliente) {
+    private Connection con = null;
+    private String msjeError = "Error al acceder a la tabla ";
+
+    public ClienteData() {
+
+        con = Conexion.getConexion();
+
+    }
+
+    public void guardarCliente(Cliente cliente) {
 
         String sql = "INSERT INTO cliente (apellido, nombre, domicilio, telefono,  estado) VALUES (?, ?, ?, ?, ? )";
         try {
@@ -45,8 +43,8 @@ public class ClienteData {
             JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
     }
-        
-        public Cliente buscarCliente(int id) {
+
+    public Cliente buscarCliente(int id) {
         Cliente cliente = null;
         String sql = "SELECT  apellido, nombre, domicilio, telefono, estado FROM cliente WHERE idCliente=?";
         PreparedStatement ps = null;
@@ -70,12 +68,12 @@ public class ClienteData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+"cliente" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
         return cliente;
     }
 
-        public List<Cliente> listarCliente() {
+    public List<Cliente> listarCliente() {
 
         List<Cliente> clientes = new ArrayList<>();
         try {
@@ -96,17 +94,17 @@ public class ClienteData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, msjeError+"cliente" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
         return clientes;
-    }        
+    }
 
-        public void modificarCliente(Cliente cliente){
-        
+    public void modificarCliente(Cliente cliente) {
+
         String sql = "UPDATE cliente SET apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idCliente = ? ";
         PreparedStatement ps = null;
-        
-        try{
+
+        try {
             ps = con.prepareStatement(sql);
             ps.setString(1, cliente.getApellido());
             ps.setString(2, cliente.getNombre());
@@ -114,50 +112,50 @@ public class ClienteData {
             ps.setString(4, cliente.getTelefono());
             ps.setInt(5, cliente.getIdCliente());
             int exito = ps.executeUpdate();
-            
-            if (exito == 1){
-                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");               
-            }else{
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+            } else {
                 JOptionPane.showMessageDialog(null, "El cliente no existe.");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,msjeError+"cliente"+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
-        
+
     }
-        
-        public void eliminarCliente(int id){
-        
-        try{
+
+    public void eliminarCliente(int id) {
+
+        try {
             String sql = "UPDATE cliente SET estado = 0 WHERE idCliente = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             ps.close();
-            if (fila==1){
-                JOptionPane.showMessageDialog(null,"Se elimino al cliente.");
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se elimino al cliente.");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, msjeError+"cliente"+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
     }
 
-        public void activarCliente(int id){
-        
-        try{
+    public void activarCliente(int id) {
+
+        try {
             String sql = "UPDATE cliente SET estado = 1 WHERE idCliente = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             ps.close();
-            if (fila==1){
-                JOptionPane.showMessageDialog(null,"Se activó el cliente.");
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se activó el cliente.");
             }
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, msjeError+"cliente"+ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
         }
     }
 

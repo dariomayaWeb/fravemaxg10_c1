@@ -42,6 +42,7 @@ public class DetalleVentaData {
                 detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
             }
             ps.close();
+            JOptionPane.showMessageDialog(null, "Detalle de venta guardado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en guardar VentaData, " + ex.getMessage());
         }

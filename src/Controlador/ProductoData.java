@@ -22,7 +22,7 @@ public class ProductoData {
 
     }
 
-    public void guardarProducto(Producto producto)  {
+    public void guardarProducto(Producto producto) {
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO producto(nombre,descripcion,categoria,precioActual,stock,estado) VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, producto.getNombre());
@@ -46,7 +46,7 @@ public class ProductoData {
     public Producto buscarProductoId(int id) {
         Producto producto = null;
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE id=?;");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE idProducto=?;");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
@@ -90,7 +90,7 @@ public class ProductoData {
         }
         return lista;
     }
-    
+
     public List<Producto> listaProductosEliminados() {
         ArrayList<Producto> lista = new ArrayList();
         try {
@@ -119,26 +119,28 @@ public class ProductoData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Porducto eliminado");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "");
+            JOptionPane.showMessageDialog(null, "Error al intentar eliminar");
         }
     }
-    
+
     public void activarProducto(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE producto SET estado=1 WHERE idProducto=?");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Producto activado");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "");
+            JOptionPane.showMessageDialog(null, "Error al intentar activar producto");
         }
     }
 
     public List<Producto> buscarProductoCategoria(String categoria) {
         ArrayList<Producto> lista = new ArrayList();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria =? AND estado=1");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria = ? AND estado=1");
             ps.setString(1, categoria);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -146,7 +148,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setCategoria(rs.getString(categoria));
+                producto.setCategoria(categoria);
                 producto.setPrecioActual(rs.getDouble("precioActual"));
                 producto.setStock(rs.getInt("stock"));
                 producto.setEstado(rs.getBoolean("estado"));
@@ -161,22 +163,22 @@ public class ProductoData {
 
     public void modificarProducto(Producto producto) {
         try {
-            PreparedStatement ps = con.prepareStatement("UPDATE producto SET nombre=?,descripcion=?,precioActual=?, stock=?, estado=? WHERE id=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE producto SET nombre=?,descripcion=?, categoria=?,precioActual=?, stock=?, estado=? WHERE idProducto=?");
             ps.setString(1, producto.getNombre());
             ps.setString(2, producto.getDescripcion());
-            ps.setDouble(3, producto.getPrecioActual());
-            ps.setInt(4, producto.getStock());
-            ps.setBoolean(5, producto.isEstado());
-            ps.setInt(6, producto.getIdProducto());
+            ps.setString(3, producto.getCategoria());
+            ps.setDouble(4, producto.getPrecioActual());
+            ps.setInt(5, producto.getStock());
+            ps.setBoolean(6, producto.isEstado());
+            ps.setInt(7, producto.getIdProducto());
             ps.executeUpdate();
-            ps.close();
             int exito = ps.executeUpdate();
-
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
             } else {
                 JOptionPane.showMessageDialog(null, "El producto no existe.");
             }
+            ps.close();            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + "producto" + ex.getMessage());
         }
