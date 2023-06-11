@@ -115,5 +115,16 @@ public class DetalleVentaData {
         }
         return listaDetalleVentas;
     }
-
+    
+    public void eliminarDetalle(int id){
+        try {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM detalleventa WHERE idDetalleVenta = ?");
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Detalle de venta eliminado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al intentar eliminar");
+        }
+    }
 }

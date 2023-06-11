@@ -190,6 +190,8 @@ public class Fravemaxg10 {
         DetalleVenta detVenta2 = new DetalleVenta(1, 2, 150000, venta2, prod2);
         detVeData.modificarDetalleVenta(detVenta2);
         */
+        // Eliminar
+        //detVeData.eliminarDetalle(2);
         
         // *** Detalle Compra ***
         //DetalleCompraData detComData = new DetalleCompraData();
@@ -208,6 +210,10 @@ public class Fravemaxg10 {
         detComData.modificarDetalleCompra(detCompra2);
         System.out.println(detComData.buscarDetalleCompra(1));
         */
+        // Eliminar OK
+        //detComData.eliminarDetalle(2);
+        
+        
     }
 
 }
