@@ -36,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        RegistrarProducto = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -88,8 +88,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu6.setText("Producto");
 
-        jMenuItem3.setText("Registrar producto");
-        jMenu6.add(jMenuItem3);
+        RegistrarProducto.setText("Registrar producto");
+        RegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarProductoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(RegistrarProducto);
 
         jMenuBar2.add(jMenu6);
 
@@ -138,7 +143,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
-        Cliente clienteVw=new Cliente();
+        ClienteView clienteVw=new ClienteView();
         clienteVw.setVisible(true);
         EscritorioPrinc.add(clienteVw);
         EscritorioPrinc.moveToFront(clienteVw);
@@ -149,6 +154,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_SalirSistemaActionPerformed
+
+    private void RegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarProductoActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        ProductoView productoVw= new ProductoView();
+        productoVw.setVisible(true);
+        EscritorioPrinc.add(productoVw);
+        EscritorioPrinc.moveToFront(productoVw);
+    }//GEN-LAST:event_RegistrarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +204,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ClienteView;
     private javax.swing.JDesktopPane EscritorioPrinc;
+    private javax.swing.JMenuItem RegistrarProducto;
     private javax.swing.JMenuItem SalirSistema;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
@@ -205,6 +221,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }
