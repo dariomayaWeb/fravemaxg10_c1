@@ -213,6 +213,7 @@ public class CompraView extends javax.swing.JInternalFrame {
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
+         dispose();
     }//GEN-LAST:event_SalirActionPerformed
 
 
