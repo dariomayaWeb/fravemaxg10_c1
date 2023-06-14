@@ -24,14 +24,15 @@ public class ClienteData {
 
     public void guardarCliente(Cliente cliente) {
 
-        String sql = "INSERT INTO cliente (apellido, nombre, domicilio, telefono,  estado) VALUES (?, ?, ?, ?, ? )";
+        String sql = "INSERT INTO cliente (dni, apellido, nombre, domicilio, telefono,  estado) VALUES (?, ?, ?, ?, ?, ? )";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, cliente.getApellido());
-            ps.setString(2, cliente.getNombre());
-            ps.setString(3, cliente.getDomicilio());
-            ps.setString(4, cliente.getTelefono());
-            ps.setBoolean(5, cliente.isEstado());
+            ps.setInt(1, cliente.getDni());
+            ps.setString(2, cliente.getApellido());
+            ps.setString(3, cliente.getNombre());
+            ps.setString(4, cliente.getDomicilio());
+            ps.setString(5, cliente.getTelefono());
+            ps.setBoolean(6, cliente.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -46,7 +47,7 @@ public class ClienteData {
 
     public Cliente buscarCliente(int id) {
         Cliente cliente = null;
-        String sql = "SELECT  apellido, nombre, domicilio, telefono, estado FROM cliente WHERE idCliente=?";
+        String sql = "SELECT  dni, apellido, nombre, domicilio, telefono, estado FROM cliente WHERE idCliente=?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -56,6 +57,7 @@ public class ClienteData {
             if (rs.next()) {
                 cliente = new Cliente();
                 cliente.setIdCliente(id); //tambien se puede poner getInt(num de columna)
+                cliente.setDni(rs.getInt("dni"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDomicilio(rs.getString("domicilio"));
@@ -73,6 +75,36 @@ public class ClienteData {
         return cliente;
     }
 
+    public Cliente buscarClienteDni(int dni) {
+        Cliente cliente = null;
+        String sql = "SELECT  * FROM cliente WHERE dni=?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente")); //tambien se puede poner getInt(num de columna)
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDomicilio(rs.getString("domicilio"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setEstado(rs.getBoolean("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El cliente no existe");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + "cliente" + ex.getMessage());
+        }
+        return cliente;
+    }    
+    
     public List<Cliente> listarCliente() {
 
         List<Cliente> clientes = new ArrayList<>();
@@ -84,6 +116,7 @@ public class ClienteData {
                 Cliente cliente = new Cliente();
 
                 cliente.setIdCliente(rs.getInt("idCliente")); //tambien se puede poner getInt(num de columna)
+                cliente.setDni(rs.getInt("dni"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDomicilio(rs.getString("domicilio"));
@@ -101,16 +134,17 @@ public class ClienteData {
 
     public void modificarCliente(Cliente cliente) {
 
-        String sql = "UPDATE cliente SET apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idCliente = ? ";
+        String sql = "UPDATE cliente SET dni = ?, apellido = ? , nombre = ? , domicilio = ?, telefono = ? WHERE idCliente = ? ";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, cliente.getApellido());
-            ps.setString(2, cliente.getNombre());
-            ps.setString(3, cliente.getDomicilio());
-            ps.setString(4, cliente.getTelefono());
-            ps.setInt(5, cliente.getIdCliente());
+            ps.setInt(1, cliente.getDni());
+            ps.setString(2, cliente.getApellido());
+            ps.setString(3, cliente.getNombre());
+            ps.setString(4, cliente.getDomicilio());
+            ps.setString(5, cliente.getTelefono());
+            ps.setInt(6, cliente.getIdCliente());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {

@@ -57,15 +57,17 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        EscritorioPrinc.setPreferredSize(new java.awt.Dimension(750, 600));
+
         javax.swing.GroupLayout EscritorioPrincLayout = new javax.swing.GroupLayout(EscritorioPrinc);
         EscritorioPrinc.setLayout(EscritorioPrincLayout);
         EscritorioPrincLayout.setHorizontalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 684, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         EscritorioPrincLayout.setVerticalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         jMenu4.setText("Administrar clientes");
@@ -129,11 +131,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc)
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc)
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

@@ -5,6 +5,7 @@ package Modelo;
 public class Cliente {
     
     private int idCliente;
+    private int dni;
     private String apellido;
     private String nombre;
     private String domicilio;
@@ -15,7 +16,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String apellido, String nombre, String domicilio, String telefono, boolean estado) {
+    public Cliente(int dni, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
+        this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -23,15 +25,15 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public Cliente(int idCliente, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
+    public Cliente(int idCliente, int dni, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
         this.idCliente = idCliente;
+        this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.estado = estado;
     }
-
 
     public int getIdCliente() {
         return idCliente;
@@ -41,12 +43,12 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getDni() {
+        return dni;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     public String getApellido() {
@@ -55,6 +57,14 @@ public class Cliente {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDomicilio() {
