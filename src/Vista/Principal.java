@@ -34,11 +34,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         ClienteView = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         RegistrarProducto = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
+        nuevaVenta = new javax.swing.JMenuItem();
+        consultarVentas = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        nuevoPedidoProducto = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
@@ -63,11 +65,11 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.setLayout(EscritorioPrincLayout);
         EscritorioPrincLayout.setHorizontalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 833, Short.MAX_VALUE)
         );
         EscritorioPrincLayout.setVerticalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 667, Short.MAX_VALUE)
         );
 
         jMenu4.setText("Administrar clientes");
@@ -85,9 +87,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
-        jMenu5.setText("Compra");
-        jMenuBar2.add(jMenu5);
-
         jMenu6.setText("Producto");
 
         RegistrarProducto.setText("Registrar producto");
@@ -100,11 +99,37 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu6);
 
-        jMenu7.setText("Proveedor");
-        jMenuBar2.add(jMenu7);
-
         jMenu8.setText("Venta");
+
+        nuevaVenta.setText("Nueva venta");
+        nuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaVentaActionPerformed(evt);
+            }
+        });
+        jMenu8.add(nuevaVenta);
+
+        consultarVentas.setText("Consultar venta");
+        consultarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarVentasActionPerformed(evt);
+            }
+        });
+        jMenu8.add(consultarVentas);
+
         jMenuBar2.add(jMenu8);
+
+        jMenu7.setText("Proveedor");
+
+        nuevoPedidoProducto.setText("Nuevo pedido");
+        nuevoPedidoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoPedidoProductoActionPerformed(evt);
+            }
+        });
+        jMenu7.add(nuevoPedidoProducto);
+
+        jMenuBar2.add(jMenu7);
 
         jMenu9.setText("Inventario");
 
@@ -131,11 +156,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -166,6 +191,36 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.add(productoVw);
         EscritorioPrinc.moveToFront(productoVw);
     }//GEN-LAST:event_RegistrarProductoActionPerformed
+
+    private void nuevoPedidoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPedidoProductoActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        ProveedorView proveedorVw=new ProveedorView();
+        proveedorVw.setVisible(true);
+        EscritorioPrinc.add(proveedorVw);
+        EscritorioPrinc.moveToFront(proveedorVw);
+    }//GEN-LAST:event_nuevoPedidoProductoActionPerformed
+
+    private void nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaVentaActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        VentaView ventaVw=new VentaView();
+        ventaVw.setVisible(true);
+        EscritorioPrinc.add(ventaVw);
+        EscritorioPrinc.moveToFront(ventaVw);
+    }//GEN-LAST:event_nuevaVentaActionPerformed
+
+    private void consultarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarVentasActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        DetalleVentaView detalleVentaVw=new DetalleVentaView();
+        detalleVentaVw.setVisible(true);
+        EscritorioPrinc.add(detalleVentaVw);
+        EscritorioPrinc.moveToFront(detalleVentaVw);
+    }//GEN-LAST:event_consultarVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,13 +263,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane EscritorioPrinc;
     private javax.swing.JMenuItem RegistrarProducto;
     private javax.swing.JMenuItem SalirSistema;
+    private javax.swing.JMenuItem consultarVentas;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -223,5 +278,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem nuevaVenta;
+    private javax.swing.JMenuItem nuevoPedidoProducto;
     // End of variables declaration//GEN-END:variables
 }
