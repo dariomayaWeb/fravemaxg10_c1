@@ -33,7 +33,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         ClienteView = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        listaClientes = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         RegistrarProducto = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
@@ -82,8 +82,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(ClienteView);
 
-        jMenuItem2.setText("LIsta de clientes");
-        jMenu4.add(jMenuItem2);
+        listaClientes.setText("LIsta de clientes");
+        listaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaClientesActionPerformed(evt);
+            }
+        });
+        jMenu4.add(listaClientes);
 
         jMenuBar2.add(jMenu4);
 
@@ -222,6 +227,16 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.moveToFront(detalleVentaVw);
     }//GEN-LAST:event_consultarVentasActionPerformed
 
+    private void listaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaClientesActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        ListaClientes listaClienteVw=new ListaClientes();
+        listaClienteVw.setVisible(true);
+        EscritorioPrinc.add(listaClienteVw);
+        EscritorioPrinc.moveToFront(listaClienteVw);
+    }//GEN-LAST:event_listaClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,7 +292,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem listaClientes;
     private javax.swing.JMenuItem nuevaVenta;
     private javax.swing.JMenuItem nuevoPedidoProducto;
     // End of variables declaration//GEN-END:variables
