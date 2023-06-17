@@ -70,7 +70,7 @@ public class DetalleVenta {
 
     @Override
     public String toString() {
-        return "DetalleVenta{" + "idDetalleVenta=" + idDetalleVenta + ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", venta=" + venta + ", producto=" + producto + '}';
+        return "idDetalle:" + idDetalleVenta + ", cantidad:" + cantidad + ", precioVenta:" + precioVenta + ", venta=" + venta + ", producto:" + producto + '}';
     }
     
     

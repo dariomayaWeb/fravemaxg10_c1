@@ -57,7 +57,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         Activar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         textProductoCategoria = new javax.swing.JTextField();
         textProductoDescripcion = new javax.swing.JTextField();
         lbelProductoEst = new javax.swing.JLabel();
@@ -140,6 +140,24 @@ public class ProductoView extends javax.swing.JInternalFrame {
             }
         });
 
+        textProductoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textProductoNombreKeyTyped(evt);
+            }
+        });
+
+        textProductoPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textProductoPrecioKeyTyped(evt);
+            }
+        });
+
+        textProductoStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textProductoStockKeyTyped(evt);
+            }
+        });
+
         btnBuscarIdProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.jpg"))); // NOI18N
         btnBuscarIdProducto.setText("Buscar por ID");
         btnBuscarIdProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +210,18 @@ public class ProductoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.jpg"))); // NOI18N
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.jpg"))); // NOI18N
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+
+        textProductoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textProductoDescripcionKeyTyped(evt);
+            }
+        });
 
         lbelProductoEst.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lbelProductoEst.setText("Estado:");
@@ -249,7 +278,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
                                     .addComponent(btnGuardarProducto))
                                 .addGap(59, 59, 59))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -302,7 +331,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -385,10 +414,10 @@ public class ProductoView extends javax.swing.JInternalFrame {
         String categoria = textProductoCategoria.getText();
         double precioActual = Double.parseDouble(textProductoPrecio.getText());
         int stock = Integer.parseInt(textProductoStock.getText());
-        boolean estado=true;
-        Producto producto= new Producto(nombre,descripcion,categoria,precioActual,stock,estado);
+        boolean estado = true;
+        Producto producto = new Producto(nombre, descripcion, categoria, precioActual, stock, estado);
         productoData.guardarProducto(producto);
-        textProductoId.setText(producto.getIdProducto()+"");
+        textProductoId.setText(producto.getIdProducto() + "");
         lbelProductoEst.setText("Activo");
     }//GEN-LAST:event_btnGuardarProductoActionPerformed
 
@@ -400,21 +429,77 @@ public class ProductoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void textProductoIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoIdKeyTyped
-         String letras=null;
-        if(textProductoId.getText().contains(letras)){
-            JOptionPane.showMessageDialog(this,"Debe colocar números");
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero");
+            textProductoId.setText("");
+            textProductoId.requestFocus();
         }
     }//GEN-LAST:event_textProductoIdKeyTyped
+
+    private void textProductoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoNombreKeyTyped
+        int k = evt.getKeyChar();
+
+        boolean mayusculas = k >= 65 && k <= 90;
+        boolean minusculas = k >= 97 && k <= 122;
+        boolean espacio = k == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
+            textProductoNombre.setText("");
+            textProductoNombre.requestFocus();
+        }
+    }//GEN-LAST:event_textProductoNombreKeyTyped
+
+    private void textProductoDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoDescripcionKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean mayusculas = k >= 65 && k <= 90;
+        boolean minusculas = k >= 97 && k <= 122;
+        boolean espacio = k == 32;
+        boolean diagonal = k == 47;
+        boolean guion = k == 45;
+        if (!(minusculas || mayusculas || espacio || diagonal || guion || numeros)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción del producto");
+            textProductoDescripcion.setText("");
+            textProductoDescripcion.requestFocus();
+        }
+    }//GEN-LAST:event_textProductoDescripcionKeyTyped
+
+    private void textProductoPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoPrecioKeyTyped
+         int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el precio del producto");
+            textProductoPrecio.setText("");
+            textProductoPrecio.requestFocus();
+        }
+    }//GEN-LAST:event_textProductoPrecioKeyTyped
+
+    private void textProductoStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoStockKeyTyped
+         int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el stock");
+            textProductoStock.setText("");
+            textProductoStock.requestFocus();
+        }
+    }//GEN-LAST:event_textProductoStockKeyTyped
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_SalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Activar;
+    private javax.swing.JButton Salir;
     private javax.swing.JButton btnActualizarProducto;
     private javax.swing.JButton btnBuscarIdProducto;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnGuardarProducto;
     private javax.swing.JButton btnLimpiarProducto;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

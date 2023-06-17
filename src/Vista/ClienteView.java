@@ -3,6 +3,7 @@ package Vista;
 import conexion.Conexion;
 import Controlador.ClienteData;
 import Modelo.Cliente;
+import javax.swing.JOptionPane;
 
 public class ClienteView extends javax.swing.JInternalFrame {
 
@@ -11,6 +12,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     public ClienteView() {
         initComponents();
         clienteData = new ClienteData();
+        textClienteId.requestFocus();
     }
 
     /**
@@ -69,6 +71,30 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel6.setText("Estado:");
 
+        textClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteIdKeyTyped(evt);
+            }
+        });
+
+        textClienteNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteNombreKeyTyped(evt);
+            }
+        });
+
+        textClienteApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteApellidoKeyTyped(evt);
+            }
+        });
+
+        textClienteDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteDomicilioKeyTyped(evt);
+            }
+        });
+
         btnGuardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.jpg"))); // NOI18N
         btnGuardarCliente.setText("Guardar");
         btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -126,8 +152,20 @@ public class ClienteView extends javax.swing.JInternalFrame {
             }
         });
 
+        textClienteTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteTelefonoKeyTyped(evt);
+            }
+        });
+
         lblDni.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblDni.setText("DNI");
+
+        textClienteDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteDniKeyTyped(evt);
+            }
+        });
 
         btnBuscarDni.setText("Buscar por DNI");
         btnBuscarDni.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +270,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                 .addComponent(btnLimpiarCliente)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
@@ -258,12 +295,12 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClienteBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteBuscarIdActionPerformed
-        // TODO add your handling code here:
+
         int id = Integer.parseInt(textClienteId.getText());
         Cliente cliente = clienteData.buscarCliente(id);
         if (cliente != null) {
             textClienteId.setText(cliente.getIdCliente() + "");
-            textClienteDni.setText(cliente.getDni()+"");
+            textClienteDni.setText(cliente.getDni() + "");
             textClienteNombre.setText(cliente.getNombre() + "");
             textClienteApellido.setText(cliente.getApellido() + "");
             textClienteDomicilio.setText(cliente.getDomicilio() + "");
@@ -273,11 +310,15 @@ public class ClienteView extends javax.swing.JInternalFrame {
             } else if (cliente.isEstado() == false) {
                 lbelClienteEstado.setText("Inactivo");
             }
+        } else {
+            //  JOptionPane.showInternalMessageDialog(this,"El cliente no existe");
+            textClienteId.setText("");
+            textClienteId.requestFocus();
         }
     }//GEN-LAST:event_btnClienteBuscarIdActionPerformed
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        // TODO add your handling code here:
+
         int dni = Integer.parseInt(textClienteDni.getText());
         String nombre = textClienteNombre.getText();
         String apellido = textClienteApellido.getText();
@@ -291,21 +332,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        // TODO add your handling code here:
+
         int id = Integer.parseInt(textClienteId.getText());
         clienteData.eliminarCliente(id);
         lbelClienteEstado.setText("Inactivo");
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void btnActivarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarClienteActionPerformed
-        // TODO add your handling code here:
+
         int id = Integer.parseInt(textClienteId.getText());
         clienteData.activarCliente(id);
         lbelClienteEstado.setText("Activo");
     }//GEN-LAST:event_btnActivarClienteActionPerformed
 
     private void btnLimpiarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarClienteActionPerformed
-        // TODO add your handling code here:
+
         textClienteId.setText("");
         textClienteDni.setText("");
         textClienteNombre.setText("");
@@ -316,7 +357,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarClienteActionPerformed
 
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
-        // TODO add your handling code here:
+
         if (textClienteId.getText() != null) {
             int id = Integer.parseInt(textClienteId.getText());
             int dni = Integer.parseInt(textClienteDni.getText());
@@ -337,17 +378,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarClienteActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDniActionPerformed
-        // TODO add your handling code here:
+
         int dni = Integer.parseInt(textClienteDni.getText());
         Cliente cliente = clienteData.buscarClienteDni(dni);
         if (cliente != null) {
             textClienteId.setText(cliente.getIdCliente() + "");
-            textClienteDni.setText(cliente.getDni()+"");
+            textClienteDni.setText(cliente.getDni() + "");
             textClienteNombre.setText(cliente.getNombre() + "");
             textClienteApellido.setText(cliente.getApellido() + "");
             textClienteDomicilio.setText(cliente.getDomicilio() + "");
@@ -356,10 +397,86 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 lbelClienteEstado.setText("Activo");
             } else if (cliente.isEstado() == false) {
                 lbelClienteEstado.setText("Inactivo");
+            } else {
+                textClienteId.setText("");
+                textClienteId.requestFocus();
             }
         }
-      
+
     }//GEN-LAST:event_btnBuscarDniActionPerformed
+
+    private void textClienteIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteIdKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteId.setText("");
+            textClienteId.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteIdKeyTyped
+
+    private void textClienteDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteDniKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteDni.setText("");
+            textClienteDni.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteDniKeyTyped
+
+    private void textClienteNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteNombreKeyTyped
+        int k = evt.getKeyChar();
+
+        boolean mayusculas = k >= 65 && k <= 90;
+        boolean minusculas = k >= 97 && k <= 122;
+        boolean espacio = k == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
+            textClienteNombre.setText("");
+            textClienteNombre.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteNombreKeyTyped
+
+    private void textClienteApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteApellidoKeyTyped
+        int k = evt.getKeyChar();
+
+        boolean mayusculas = k >= 65 && k <= 90;
+        boolean minusculas = k >= 97 && k <= 122;
+        boolean espacio = k == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un apellido");
+            textClienteApellido.setText("");
+            textClienteApellido.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteApellidoKeyTyped
+
+    private void textClienteTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteTelefonoKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        if (!numeros) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un teléfono");
+            textClienteTelefono.setText("");
+            textClienteTelefono.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteTelefonoKeyTyped
+
+    private void textClienteDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteDomicilioKeyTyped
+        int k = evt.getKeyChar();
+
+        boolean may = k >= 65 && k <= 90;
+        boolean min = k >= 97 && k <= 122;
+        boolean espacio = k == 32;
+        boolean numeros = k >= 48 && k <= 57;
+
+        if (!(may || min || espacio || numeros)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un domicilio");
+            textClienteDomicilio.setText("");
+            textClienteDomicilio.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteDomicilioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
