@@ -12,6 +12,8 @@ import Modelo.DetalleVenta;
 import Modelo.Producto;
 import Modelo.Venta;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -87,9 +89,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         textProdDetalle = new javax.swing.JTextField();
         btnPrecio = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(650, 550));
-        setMinimumSize(new java.awt.Dimension(650, 550));
-        setPreferredSize(new java.awt.Dimension(650, 550));
+        setMaximumSize(new java.awt.Dimension(650, 530));
+        setMinimumSize(new java.awt.Dimension(650, 530));
+        setPreferredSize(new java.awt.Dimension(650, 530));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Detalle de Venta.png"))); // NOI18N
 
@@ -265,7 +267,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -273,7 +275,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                             .addComponent(btnModificar)
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,10 +283,21 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        int cantidad = Integer.parseInt(textCantidad.getText());
-        DetalleVenta detVentaNuevo = new DetalleVenta(cantidad, venta, prodComboBox);
-        detVentData.guardarDetalleVenta(detVentaNuevo);
-        textIdDetalleVenta.setText(detVentaNuevo.getIdDetalleVenta()+"");
+        String cantTexto = textCantidad.getText();
+        
+        if (!"".equals(cantTexto) && prodComboBox.getIdProducto()>0){
+            try{
+                int cantidad = Integer.parseInt(textCantidad.getText());
+                DetalleVenta detVentaNuevo = new DetalleVenta(cantidad, venta, prodComboBox);
+                detVentData.guardarDetalleVenta(detVentaNuevo);
+                textIdDetalleVenta.setText(detVentaNuevo.getIdDetalleVenta()+"");
+            }catch(InputMismatchException ex){
+                JOptionPane.showMessageDialog(null, "Ingrese un producto y una cantidad");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un producto y una cantidad");
+        }
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed

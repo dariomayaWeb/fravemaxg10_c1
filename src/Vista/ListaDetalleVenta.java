@@ -9,6 +9,7 @@ import Controlador.VentaData;
 import Modelo.DetalleVenta;
 import Modelo.Venta;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -245,11 +246,15 @@ public class ListaDetalleVenta extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         int filaSelecionada = tablaDetallesVenta.getSelectedRow();
-        int idDetVenta = Integer.parseInt(tablaDetallesVenta.getValueAt(filaSelecionada, 0).toString()) ;
-        DetalleVentaView detVentView = new DetalleVentaView(idDetVenta);
-        detVentView.setVisible(true);
-        Principal.EscritorioPrinc.add(detVentView);
-        Principal.EscritorioPrinc.moveToFront(detVentView);
+        if (filaSelecionada < 0) {
+            JOptionPane.showMessageDialog(null, "Elija un detalle para ver modificar");
+        } else {
+            int idDetVenta = Integer.parseInt(tablaDetallesVenta.getValueAt(filaSelecionada, 0).toString()) ;
+            DetalleVentaView detVentView = new DetalleVentaView(idDetVenta);
+            detVentView.setVisible(true);
+            Principal.EscritorioPrinc.add(detVentView);
+            Principal.EscritorioPrinc.moveToFront(detVentView);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -260,9 +265,13 @@ public class ListaDetalleVenta extends javax.swing.JInternalFrame {
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         // TODO add your handling code here:
         int filaSelecionada = tablaDetallesVenta.getSelectedRow();
-        int idDetVenta = Integer.parseInt(tablaDetallesVenta.getValueAt(filaSelecionada, 0).toString()) ;
-        detVentData.eliminarDetalle(idDetVenta);
-        cargarDatos(venta.getIdVenta());
+        if (filaSelecionada < 0) {
+            JOptionPane.showMessageDialog(null, "Elija un detalle para quitar");
+        } else {
+            int idDetVenta = Integer.parseInt(tablaDetallesVenta.getValueAt(filaSelecionada, 0).toString()) ;
+            detVentData.eliminarDetalle(idDetVenta);
+            cargarDatos(venta.getIdVenta());
+        }
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnNuevoDetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDetActionPerformed
