@@ -18,13 +18,19 @@ public class ListaClientes extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaClientes
      */
-    
     private DefaultTableModel modelo;
-    private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> listaClientes;
     private ClienteData clData;
-    
+
     public ListaClientes() {
         initComponents();
+        modelo = new DefaultTableModel();
+        clData = new ClienteData();
+        listaClientes = (ArrayList) clData.listarCliente();
+
+        armarCabecera();
+        cargarDatos();
+
     }
 
     /**
@@ -38,14 +44,17 @@ public class ListaClientes extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("Lista de Clientes");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +65,7 @@ public class ListaClientes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +98,26 @@ public class ListaClientes extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        ArrayList<Object> columns = new ArrayList<Object>();
+        columns.add("ID");
+        columns.add("DNI");
+        columns.add("Apellido");
+        columns.add("Nombre");
+        columns.add("Domicilio");
+        columns.add("Teléfono");
+        for (Object it : columns) {
+            modelo.addColumn(it);
+        }
+        tablaClientes.setModel(modelo);
+    }
+
+    private void cargarDatos() {
+        for (Cliente cliente : listaClientes) {
+            modelo.addRow(new Object[]{cliente.getIdCliente(), cliente.getDni(), cliente.getApellido(), cliente.getNombre(), cliente.getDomicilio(), cliente.getTelefono()});
+        }
+    }
 }

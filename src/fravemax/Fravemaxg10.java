@@ -15,6 +15,12 @@ import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.Venta;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Fravemaxg10 {
 
@@ -74,7 +80,7 @@ public class Fravemaxg10 {
         // opcion N/A => habilita caja de texto) lo tomamos de la caja de texto,
         // y una vez guardado el producto, se llena el combobox nuevamente
         // mediante función.
-        //ProductoData proData = new ProductoData();
+        ProductoData proData = new ProductoData();
         //Producto prod = new Producto("TV Samsung FHD", "de 100 pulgadas", "Televisor", 120000, 50, true);
         // Guardar OK
         //proData.guardarProducto(prod);
@@ -94,6 +100,29 @@ public class Fravemaxg10 {
         proData.guardarProducto(prod4);
         System.out.println(proData.listar());
         */
+        // Obtener Categorias OK
+        /*System.out.println(proData.listar());
+        List listaCategorias = new ArrayList();
+        ArrayList<Producto> lista = new ArrayList();
+        lista = (ArrayList)proData.listar();
+        lista.forEach(System.out::println);
+        for (Producto producto : lista) {
+            String cat = producto.getCategoria();
+            listaCategorias.add(cat);
+        }
+        */
+        //listaCategorias.forEach(System.out::println);
+        /* metodo 1 OK
+        listaCategorias = (List) listaCategorias.stream().distinct().collect(Collectors.toList());
+        listaCategorias.forEach(System.out::println);
+        */
+        /* metodo 2 OK  ---> Se Añade metodo
+        Set miConjunto = new HashSet<>(listaCategorias);
+        listaCategorias.clear();
+        listaCategorias.addAll(miConjunto);
+        listaCategorias.forEach(System.out::println);
+        */
+        //System.out.println(proData.listarCategorias());
         // Listar por categoría  OK
         /*Producto prod5 = new Producto("HP LJ 1150", "monocromatica", "Impresora", 100000, 10, true);
         Producto prod6 = new Producto("SONY 78-FHD", "78 pulgadas HD", "Televisor", 110000, 15, true);
@@ -144,7 +173,7 @@ public class Fravemaxg10 {
 // NOTA: Se podria hacer un Listar compras eliminadas
         
         // *** Venta ***
-        //VentaData ventaData = new VentaData();
+        VentaData ventaData = new VentaData();
         //Cliente cliente = new Cliente(4, "McLaren", "Juan", "la Quiaca", "777777", true);
         //Venta venta = new Venta(LocalDate.parse("2018-09-15"), cliente, true);
         // Guardar OK
@@ -168,6 +197,17 @@ public class Fravemaxg10 {
         ventaData.guardarVenta(venta3);
         System.out.println(ventaData.lista());
         */
+        // Listar Ventas por Cliente OK
+        //System.out.println(ventaData.listarVentasCliente(4));
+        // Listar ventas por fecha  OK
+        /*LocalDate fechaLD = LocalDate.parse("2015-09-15");
+        System.out.println(ventaData.listarVentasFecha(fechaLD));
+        */
+        // Buscar una Venta por Cliente y Fecha  OK
+        /*LocalDate fechaLD = LocalDate.parse("2015-09-15");
+        Cliente cliente = new Cliente(4,12345, "McLaren", "Juan", "la Quiaca", "777777", true);
+        System.out.println(ventaData.buscarVentaClienteFecha(cliente.getIdCliente(), fechaLD));
+        */
         // Eliminar y activar
 // NOTA: Se podria hacer un Listar ventas eliminadas
         //ventaData.eliminarVenta(1);
@@ -178,11 +218,13 @@ public class Fravemaxg10 {
         //Producto prod = new Producto(12, "SONY 78-FHD", "78 pulgadas HD", "Televisor", 110000, 15, true);
         //Cliente cliente2 = new Cliente(5, "Fort", "Ricardo", "Miami", "456564", true);
         //Venta venta = new Venta(1,LocalDate.parse("2022-03-25"), cliente2, true);
-        //DetalleVenta detVenta = new DetalleVenta(1, 110000, venta, prod);
+        //DetalleVenta detVenta = new DetalleVenta(3, venta, prod);
         // Guardar OK
         //detVeData.guardarDetalleVenta(detVenta);
         // Buscar OK
         //System.out.println(detVeData.buscarDetalleVenta(1));
+        // Listar Detalles de Ventas OK
+        //System.out.println(detVeData.listaDetalleVentas(venta.getIdVenta()));
         // Modificar OK
         /*Cliente cliente3 = new Cliente(4, "McLaren", "Juan", "la Quiaca", "777777", true);
         Venta venta2 = new Venta(2,LocalDate.parse("2015-09-15"), cliente3, true);
@@ -212,6 +254,9 @@ public class Fravemaxg10 {
         */
         // Eliminar OK
         //detComData.eliminarDetalle(2);
+        
+        
+        
         
         
     }

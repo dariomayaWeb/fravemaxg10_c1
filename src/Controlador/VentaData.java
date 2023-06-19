@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Venta;
 import Modelo.Compra;
+import Modelo.DetalleVenta;
 import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -76,35 +78,35 @@ public class VentaData {
         }
     }
 
-    public void eliminarVenta(int id) {
+    public void CerrarVenta(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=0 WHERE idVenta=?;");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Venta eliminada");
+            JOptionPane.showMessageDialog(null, "Venta Cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }
     }
 
-    public void activarVenta(int id) {
+    public void reabrirVenta(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE venta SET estado=1 WHERE idVenta=?;");
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Venta activada");
+            JOptionPane.showMessageDialog(null, "Venta reabierta");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }
     }
 
-    public List<Venta> lista() {
+    public List<Venta> listarVentas() {
         ArrayList<Venta> lista = new ArrayList();
         ClienteData clienteData = new ClienteData();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta WHERE estado=1");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta ORDER BY fecha DESC");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Venta venta = new Venta();
@@ -121,5 +123,75 @@ public class VentaData {
 
         return lista;
     }
+    
+    public List<Venta> listarVentasCliente(int idCliente) {
+        ArrayList<Venta> lista = new ArrayList();
+        ClienteData clienteData = new ClienteData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta WHERE estado=1 AND idCliente=? ORDER BY fecha DESC");
+            ps.setInt(1, idCliente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Venta venta = new Venta();
+                venta.setIdVenta(rs.getInt("idVenta"));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setCliente(clienteData.buscarCliente(rs.getInt("idCliente")));
+                venta.setEstado(rs.getBoolean("estado"));
+                lista.add(venta);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista venta, " + ex.getMessage());
+        }
 
+        return lista;
+    }    
+    
+    public List<Venta> listarVentasFecha(LocalDate fecha ) {
+        ArrayList<Venta> lista = new ArrayList();
+        ClienteData clienteData = new ClienteData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta AS V, cliente AS C WHERE V.idCliente=C.idCliente AND V.estado=1 AND fecha=? ORDER BY C.apellido");
+            ps.setDate(1, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Venta venta = new Venta();
+                venta.setIdVenta(rs.getInt("idVenta"));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setCliente(clienteData.buscarCliente(rs.getInt("V.idCliente")));
+                venta.setEstado(rs.getBoolean("V.estado"));
+                lista.add(venta);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista venta, " + ex.getMessage());
+        }
+
+        return lista;
+    }
+    
+    public List<Venta> listarVentasClienteFecha(int idCliente, LocalDate fecha ) {
+        ArrayList<Venta> lista = new ArrayList();
+        ClienteData clienteData = new ClienteData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM venta AS V, cliente AS C WHERE V.idCliente=C.idCliente AND V.estado=1 AND V.idCliente=? AND fecha=? ");
+            ps.setInt(1, idCliente);
+            ps.setDate(2, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Venta venta = new Venta();
+                venta.setIdVenta(rs.getInt("idVenta"));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setCliente(clienteData.buscarCliente(rs.getInt("V.idCliente")));
+                venta.setEstado(rs.getBoolean("V.estado"));
+                lista.add(venta);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista venta, " + ex.getMessage());
+        }
+
+        return lista;
+    }
+    
 }

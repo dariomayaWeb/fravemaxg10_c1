@@ -71,7 +71,7 @@ public class DetalleCompra {
 
     @Override
     public String toString() {
-        return "idDetalle:" + idDetalle + ", cantidad:" + cantidad + ", precioCosto:" + precioCosto + ", compra:" + compra + ", producto:" + producto + '}';
+        return "DetalleCompra{" + "idDetalle=" + idDetalle + ", cantidad=" + cantidad + ", precioCosto=" + precioCosto + ", compra=" + compra + ", producto=" + producto + '}';
     }
     
 }    

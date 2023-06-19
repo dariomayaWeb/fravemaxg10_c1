@@ -109,7 +109,7 @@ public class ClienteData {
 
         List<Cliente> clientes = new ArrayList<>();
         try {
-            String sql = " SELECT * FROM cliente WHERE estado=1";
+            String sql = " SELECT * FROM cliente WHERE estado=1 ORDER BY apellido";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

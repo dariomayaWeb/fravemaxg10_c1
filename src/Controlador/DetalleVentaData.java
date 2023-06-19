@@ -99,6 +99,7 @@ public class DetalleVentaData {
         ArrayList<DetalleVenta> listaDetalleVentas = new ArrayList();
         try {
             PreparedStatement ps = con.prepareStatement("select * from detalleventa WHERE idVenta=?");
+            ps.setInt(1, idVenta);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 DetalleVenta detalleVenta = new DetalleVenta();
@@ -111,7 +112,7 @@ public class DetalleVentaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en buscar el detalle de Compras, " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en buscar el detalle de Ventas, " + ex.getMessage());
         }
         return listaDetalleVentas;
     }
@@ -127,4 +128,15 @@ public class DetalleVentaData {
             JOptionPane.showMessageDialog(null, "Error al intentar eliminar");
         }
     }
+
+    public double montoTotal(int idVenta){
+        double monto = 0.0;
+        ArrayList<DetalleVenta> listaDetalleVentas = new ArrayList();
+        listaDetalleVentas = (ArrayList)this.listaDetalleVentas(idVenta);
+        for (DetalleVenta detVenta : listaDetalleVentas) {
+            monto = monto + detVenta.getPrecioVenta();
+        }
+        return monto;
+    }    
+    
 }

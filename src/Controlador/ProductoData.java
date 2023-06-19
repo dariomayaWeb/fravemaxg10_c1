@@ -8,7 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class ProductoData {
@@ -140,7 +143,7 @@ public class ProductoData {
     public List<Producto> buscarProductoCategoria(String categoria) {
         ArrayList<Producto> lista = new ArrayList();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria = ? AND estado=1");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria = ? AND estado=1 ORDER BY nombre");
             ps.setString(1, categoria);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -184,4 +187,18 @@ public class ProductoData {
         }
     }
 
+    public List<String> listarCategorias(){
+        List listaCategorias = new ArrayList();
+        ArrayList<Producto> listaProductos = new ArrayList();
+        listaProductos = (ArrayList)this.listar();
+        for (Producto producto : listaProductos) {
+            String cat = producto.getCategoria();
+            listaCategorias.add(cat);
+        }
+        Set miConjunto = new HashSet<>(listaCategorias);
+        listaCategorias.clear();
+        listaCategorias.addAll(miConjunto);
+        Collections.sort(listaCategorias);
+        return listaCategorias;
+    }
 }

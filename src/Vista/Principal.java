@@ -29,20 +29,22 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         EscritorioPrinc = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         ClienteView = new javax.swing.JMenuItem();
         listaClientes = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        listaVentas = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         RegistrarProducto = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        nuevaVenta = new javax.swing.JMenuItem();
-        consultarVentas = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        nuevoPedidoProducto = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         SalirSistema = new javax.swing.JMenuItem();
 
@@ -57,24 +59,28 @@ public class Principal extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jMenuItem2.setText("jMenuItem2");
 
-        EscritorioPrinc.setPreferredSize(new java.awt.Dimension(750, 600));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        EscritorioPrinc.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout EscritorioPrincLayout = new javax.swing.GroupLayout(EscritorioPrinc);
         EscritorioPrinc.setLayout(EscritorioPrincLayout);
         EscritorioPrincLayout.setHorizontalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 833, Short.MAX_VALUE)
+            .addGap(0, 803, Short.MAX_VALUE)
         );
         EscritorioPrincLayout.setVerticalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
+            .addGap(0, 629, Short.MAX_VALUE)
         );
 
-        jMenu4.setText("Administrar clientes");
+        jMenu4.setText("Clientes");
 
-        ClienteView.setText("Cliente");
+        ClienteView.setText("Administrar clientes");
         ClienteView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteViewActionPerformed(evt);
@@ -92,7 +98,19 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
-        jMenu6.setText("Producto");
+        jMenu8.setText("Ventas");
+
+        listaVentas.setText("Administrar Ventas");
+        listaVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaVentasActionPerformed(evt);
+            }
+        });
+        jMenu8.add(listaVentas);
+
+        jMenuBar2.add(jMenu8);
+
+        jMenu6.setText("Inventario");
 
         RegistrarProducto.setText("Registrar producto");
         RegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -102,46 +120,27 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu6.add(RegistrarProducto);
 
+        jMenuItem5.setText("Lista de productos");
+        jMenu6.add(jMenuItem5);
+
         jMenuBar2.add(jMenu6);
-
-        jMenu8.setText("Venta");
-
-        nuevaVenta.setText("Nueva venta");
-        nuevaVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevaVentaActionPerformed(evt);
-            }
-        });
-        jMenu8.add(nuevaVenta);
-
-        consultarVentas.setText("Consultar venta");
-        consultarVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarVentasActionPerformed(evt);
-            }
-        });
-        jMenu8.add(consultarVentas);
-
-        jMenuBar2.add(jMenu8);
 
         jMenu7.setText("Proveedor");
 
-        nuevoPedidoProducto.setText("Nuevo pedido");
-        nuevoPedidoProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoPedidoProductoActionPerformed(evt);
-            }
-        });
-        jMenu7.add(nuevoPedidoProducto);
+        jMenuItem4.setText("Administrar Proveedores");
+        jMenu7.add(jMenuItem4);
+
+        jMenuItem1.setText("Lista de proveedores");
+        jMenu7.add(jMenuItem1);
 
         jMenuBar2.add(jMenu7);
 
-        jMenu9.setText("Inventario");
+        jMenu5.setText("Compras");
 
-        jMenuItem1.setText("Ver");
-        jMenu9.add(jMenuItem1);
+        jMenuItem3.setText("Administrar Compras");
+        jMenu5.add(jMenuItem3);
 
-        jMenuBar2.add(jMenu9);
+        jMenuBar2.add(jMenu5);
 
         jMenu10.setText("Salir");
 
@@ -161,11 +160,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,36 +200,6 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.moveToFront(productoVw);
     }//GEN-LAST:event_RegistrarProductoActionPerformed
 
-    private void nuevoPedidoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPedidoProductoActionPerformed
-        // TODO add your handling code here:
-        EscritorioPrinc.removeAll();
-        EscritorioPrinc.repaint();
-        ProveedorView proveedorVw=new ProveedorView();
-        proveedorVw.setVisible(true);
-        EscritorioPrinc.add(proveedorVw);
-        EscritorioPrinc.moveToFront(proveedorVw);
-    }//GEN-LAST:event_nuevoPedidoProductoActionPerformed
-
-    private void nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaVentaActionPerformed
-        // TODO add your handling code here:
-        EscritorioPrinc.removeAll();
-        EscritorioPrinc.repaint();
-        VentaView ventaVw=new VentaView();
-        ventaVw.setVisible(true);
-        EscritorioPrinc.add(ventaVw);
-        EscritorioPrinc.moveToFront(ventaVw);
-    }//GEN-LAST:event_nuevaVentaActionPerformed
-
-    private void consultarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarVentasActionPerformed
-        // TODO add your handling code here:
-        EscritorioPrinc.removeAll();
-        EscritorioPrinc.repaint();
-        DetalleVentaView detalleVentaVw=new DetalleVentaView();
-        detalleVentaVw.setVisible(true);
-        EscritorioPrinc.add(detalleVentaVw);
-        EscritorioPrinc.moveToFront(detalleVentaVw);
-    }//GEN-LAST:event_consultarVentasActionPerformed
-
     private void listaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaClientesActionPerformed
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
@@ -236,6 +209,16 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.add(listaClienteVw);
         EscritorioPrinc.moveToFront(listaClienteVw);
     }//GEN-LAST:event_listaClientesActionPerformed
+
+    private void listaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVentasActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        ListaVentas listaVentasView = new ListaVentas();
+        listaVentasView.setVisible(true);
+        EscritorioPrinc.add(listaVentasView);
+        EscritorioPrinc.moveToFront(listaVentasView);        
+    }//GEN-LAST:event_listaVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,25 +258,27 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ClienteView;
-    private javax.swing.JDesktopPane EscritorioPrinc;
+    public static javax.swing.JDesktopPane EscritorioPrinc;
     private javax.swing.JMenuItem RegistrarProducto;
     private javax.swing.JMenuItem SalirSistema;
-    private javax.swing.JMenuItem consultarVentas;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem listaClientes;
-    private javax.swing.JMenuItem nuevaVenta;
-    private javax.swing.JMenuItem nuevoPedidoProducto;
+    private javax.swing.JMenuItem listaVentas;
     // End of variables declaration//GEN-END:variables
 }

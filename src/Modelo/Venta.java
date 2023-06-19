@@ -60,9 +60,8 @@ public class Venta {
 
     @Override
     public String toString() {
-        return  "Id: "+idVenta +" / " + fecha +" / " + cliente +" / " + estado ;
+        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", cliente=" + cliente + ", estado=" + estado + '}';
     }
 
     
 }
-  

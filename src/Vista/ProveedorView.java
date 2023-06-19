@@ -70,28 +70,16 @@ public class ProveedorView extends javax.swing.JInternalFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedor.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel2.setText("Razon Social:");
+        jLabel2.setText("Razon Social");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel3.setText("Domicilio:");
+        jLabel3.setText("Domicilio");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel4.setText("Teléfono:");
+        jLabel4.setText("Teléfono");
 
         lbelEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        lbelEstado.setText("Estado:");
-
-        textRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textRazonSocialKeyTyped(evt);
-            }
-        });
-
-        textTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textTelefonoKeyTyped(evt);
-            }
-        });
+        lbelEstado.setText("Estado");
 
         Activar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Activar.jpg"))); // NOI18N
         Activar.setText("Activar");
@@ -117,7 +105,7 @@ public class ProveedorView extends javax.swing.JInternalFrame {
         });
 
         Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.jpg"))); // NOI18N
-        Buscar.setText("Buscar x Id");
+        Buscar.setText("Buscar");
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -148,14 +136,8 @@ public class ProveedorView extends javax.swing.JInternalFrame {
             }
         });
 
-        textDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textDomicilioKeyTyped(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel6.setText("Id:");
+        jLabel6.setText("Id");
 
         textId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -358,52 +340,11 @@ public class ProveedorView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void textIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIdKeyTyped
-         int k = evt.getKeyChar();
-        boolean numeros = k >= 48 && k <= 57;
-        if (!numeros) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar números");
-            textId.setText("");
-            textId.requestFocus();
+        String letras=null;
+        if(textId.getText().contains(letras)){
+            JOptionPane.showMessageDialog(this,"Debe colocar números");
         }
     }//GEN-LAST:event_textIdKeyTyped
-
-    private void textRazonSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRazonSocialKeyTyped
-          int k = evt.getKeyChar();
-
-        boolean mayusculas = k >= 65 && k <= 90;
-        boolean minusculas = k >= 97 && k <= 122;
-        boolean espacio = k == 32;
-
-        if (!(minusculas || mayusculas || espacio)) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar una Razon Social");
-            textRazonSocial.setText("");
-            textRazonSocial.requestFocus();
-        }
-    }//GEN-LAST:event_textRazonSocialKeyTyped
-
-    private void textDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textDomicilioKeyTyped
-         int k = evt.getKeyChar();
-
-        boolean mayusculas = k >= 65 && k <= 90;
-        boolean minusculas = k >= 97 && k <= 122;
-        boolean espacio = k == 32;
-        boolean numeros = k >= 48 && k <= 57;
-        if (! minusculas || mayusculas || espacio || numeros ){
-            JOptionPane.showMessageDialog(this, "Debe ingresar un domicilio");
-            textDomicilio.setText("");
-            textDomicilio.requestFocus();
-        }
-    }//GEN-LAST:event_textDomicilioKeyTyped
-
-    private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
-          int k = evt.getKeyChar();
-        boolean numeros = k >= 48 && k <= 57;
-        if (!numeros) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar números");
-            textTelefono.setText("");
-            textTelefono.requestFocus();
-        }
-    }//GEN-LAST:event_textTelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

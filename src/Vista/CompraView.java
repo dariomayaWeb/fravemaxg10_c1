@@ -5,29 +5,17 @@
  */
 package Vista;
 
-import Controlador.CompraData;
-import Modelo.Compra;
-import Modelo.Proveedor;
-import java.time.LocalDate;
-import java.util.Calendar;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Cristina Ferez
  */
 public class CompraView extends javax.swing.JInternalFrame {
 
-    private CompraData compraData;
-    private Proveedor proveedor;
-
     /**
      * Creates new form Compra
      */
     public CompraView() {
         initComponents();
-        compraData = new CompraData();
-        proveedor = new Proveedor();
     }
 
     /**
@@ -39,14 +27,10 @@ public class CompraView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCalendar2 = new com.toedter.calendar.JCalendar();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDayChooser1 = new com.toedter.calendar.JDayChooser();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jDayChooser2 = new com.toedter.calendar.JDayChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lbelEstado = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        textFecha = new javax.swing.JTextField();
         Activar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
@@ -54,20 +38,18 @@ public class CompraView extends javax.swing.JInternalFrame {
         Limpiar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
-        textProveedor = new javax.swing.JTextField();
+        textEstado = new javax.swing.JTextField();
+        textIdProveedor = new javax.swing.JTextField();
         Actualizar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        textId = new javax.swing.JTextField();
-        textFecha = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setText("Fecha:");
+        jLabel1.setText("Fecha");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel3.setText("Proveedor:");
+        jLabel3.setText("IdProveedor");
 
-        lbelEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        lbelEstado.setText("Estado:");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel4.setText("Estado");
 
         Activar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Activar.jpg"))); // NOI18N
         Activar.setText("Activar");
@@ -86,7 +68,7 @@ public class CompraView extends javax.swing.JInternalFrame {
         });
 
         Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.jpg"))); // NOI18N
-        Buscar.setText("Buscar x Id");
+        Buscar.setText("Buscar");
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -126,185 +108,113 @@ public class CompraView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel2.setText("Id:");
-
-        textId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textIdKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(jLabel5)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Actualizar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbelEstado)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(36, 36, 36)
-                                                .addComponent(textProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Activar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(139, 139, 139))))
+                                .addComponent(Activar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114)
+                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(78, 78, 78)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
+                                .addGap(54, 54, 54)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .addComponent(textId))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(textEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                    .addComponent(textIdProveedor))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Buscar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(Guardar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Limpiar)))))
-                .addGap(60, 60, 60))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Guardar)
+                                    .addComponent(Buscar)
+                                    .addComponent(Limpiar)
+                                    .addComponent(Actualizar))
+                                .addGap(54, 54, 54))
+                            .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Actualizar))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(Limpiar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(lbelEstado))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(Buscar)
-                        .addGap(26, 26, 26)
-                        .addComponent(Guardar)))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(84, 84, 84)
+                .addComponent(Buscar)
+                .addGap(26, 26, 26)
+                .addComponent(Guardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Actualizar)
+                .addGap(32, 32, 32)
+                .addComponent(Limpiar)
+                .addGap(38, 38, 38)
+                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Activar)
                         .addComponent(Eliminar))
-                    .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(textEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(129, 129, 129)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        int id = Integer.parseInt(textId.getText());
-        Compra compra = compraData.buscarCompra(id);
-        if (compra != null) {
-            textId.setText(compra.getIdCompra() + "");
-            textFecha.getCalendar();
-            textProveedor.setText(compra.getProveedor() + "");
-            if (compra.isEstado() == true) {
-                lbelEstado.setText("Activo");
-            } else if (compra.isEstado() == false) {
-                lbelEstado.setText("Inactivo");
-            }
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-
-        LocalDate fecha = LocalDate.parse(textFecha.getDateFormatString());
-        //Proveedor proveedor = textProveedor.getText();
-        boolean estado = true;
-        Compra compra = new Compra(proveedor, fecha, estado);
-        compraData.guardarCompra(compra);
-        textId.setText(compra.getIdCompra() + "");
-        lbelEstado.setText("Activo");
+        // TODO add your handling code here:
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-
-        if (textId.getText() != null) {
-            LocalDate fecha = LocalDate.parse(textFecha.getDateFormatString());
-            //Proveedor proveedor = textProveedor.getText();
-            String activo = lbelEstado.getText();
-            boolean estado;
-            if ("ACtivo".equals(activo)) {
-                estado = true;
-            } else {
-                estado = false;
-            }
-            Compra compra = new Compra(proveedor, fecha, estado);
-            compraData.modificarCompra(compra);
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
-        textId.setText("");
-        textProveedor.setText("");
-        textFecha.setCalendar(Calendar.getInstance());
-        lbelEstado.setText("");
+        // TODO add your handling code here:
     }//GEN-LAST:event_LimpiarActionPerformed
 
     private void ActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarActionPerformed
-        int id = Integer.parseInt(textId.getText());
-        compraData.darDeAltaCompra(id);
-        lbelEstado.setText("Activo");
+        // TODO add your handling code here:
     }//GEN-LAST:event_ActivarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int id = Integer.parseInt(textId.getText());
-        compraData.darDebajaCompra(id);
-        lbelEstado.setText("Inactivo");
+        // TODO add your handling code here:
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        dispose();
+        // TODO add your handling code here:
+         dispose();
     }//GEN-LAST:event_SalirActionPerformed
-
-    private void textIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIdKeyTyped
-         int k = evt.getKeyChar();
-        boolean numeros = k >= 48 && k <= 57;
-        if (!numeros) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar números");
-            textId.setText("");
-            textId.requestFocus();
-        }
-    }//GEN-LAST:event_textIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,18 +225,12 @@ public class CompraView extends javax.swing.JInternalFrame {
     private javax.swing.JButton Guardar;
     private javax.swing.JButton Limpiar;
     private javax.swing.JButton Salir;
-    private com.toedter.calendar.JCalendar jCalendar2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDayChooser jDayChooser1;
-    private com.toedter.calendar.JDayChooser jDayChooser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
-    private javax.swing.JLabel lbelEstado;
-    private com.toedter.calendar.JDateChooser textFecha;
-    private javax.swing.JTextField textId;
-    private javax.swing.JTextField textProveedor;
+    private javax.swing.JTextField textEstado;
+    private javax.swing.JTextField textFecha;
+    private javax.swing.JTextField textIdProveedor;
     // End of variables declaration//GEN-END:variables
 }
