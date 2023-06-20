@@ -201,10 +201,36 @@ public class ProductoData {
         Collections.sort(listaCategorias);
         return listaCategorias;
     }
-    public List<Producto> buscarProductosCoincidencia(String coincidencia) {
+    
+    public List<Producto> buscarProductosCoincidenciaPorNombre(String coincidencia) {
         ArrayList<Producto> lista = new ArrayList();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE nombre like ? AND estado=1");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE nombre like ?  '%' AND estado=1");
+            ps.setString(1, coincidencia);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setNombre(rs.getString("nombre"));
+                producto.setCategoria(rs.getString("categoria"));
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecioActual(rs.getDouble("precioActual"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getBoolean("estado"));
+                lista.add(producto);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la lista de producto, " + ex.getMessage());
+        }
+        return lista;
+    }
+    
+     public List<Producto> buscarProductosCoincidenciaPorCateg(String coincidencia) {
+        ArrayList<Producto> lista = new ArrayList();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria like ?  '%' AND estado=1");
+            ps.setString(1, coincidencia);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Producto producto = new Producto();

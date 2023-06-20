@@ -147,6 +147,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu6.add(RegistrarProducto);
 
         jMenuItem5.setText("Lista de productos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem5);
 
         jMenuBar2.add(jMenu6);
@@ -319,6 +324,16 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.add(venView);
         EscritorioPrinc.moveToFront(venView);
     }//GEN-LAST:event_VentaActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+         EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        InventarioProductosView venView = new InventarioProductosView();
+        venView.setVisible(true);
+        EscritorioPrinc.add(venView);
+        EscritorioPrinc.moveToFront(venView);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
