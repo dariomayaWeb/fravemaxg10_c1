@@ -30,7 +30,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
     private VentaData ventaData;
     private ArrayList<Venta> listaVentas;
     private DetalleVentaData detVentaData;
-
+ 
     public ListaVentas() {
         initComponents();
         modelo = new DefaultTableModel();
@@ -39,7 +39,8 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         ventaData = new VentaData();
         //listaVentas = (ArrayList) ventaData.listarVentas();
         detVentaData = new DetalleVentaData();
-
+        
+  //     calendarioFecha = new Date();
         cargarClientes();
         armarCabecera();
         cargarDatos(listaVentas);
@@ -57,7 +58,6 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         lblTitulo = new javax.swing.JLabel();
         lblSelecCliente = new javax.swing.JLabel();
         cmboxClientes = new javax.swing.JComboBox<>();
-        calendarFecha = new com.toedter.calendar.JDateChooser();
         lblFecha = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         btnDetalle = new javax.swing.JButton();
@@ -69,6 +69,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         btnActivar = new javax.swing.JButton();
         btnEditarVenta = new javax.swing.JButton();
+        calendarFecha = new com.toedter.calendar.JDateChooser();
 
         setMinimumSize(new java.awt.Dimension(700, 530));
         setPreferredSize(new java.awt.Dimension(700, 530));
@@ -177,9 +178,9 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                         .addComponent(cmboxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblFecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(26, 26, 26)
+                        .addComponent(calendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addComponent(btnBuscar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDetalle)
@@ -191,7 +192,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                         .addComponent(btnCerrarVenta)
                         .addGap(18, 18, 18)
                         .addComponent(btnActivar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevaVenta, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -212,13 +213,15 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnBuscar)
                         .addComponent(btnNuevaVenta))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(calendarFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSelecCliente)
-                            .addComponent(cmboxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFecha))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(calendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblSelecCliente)
+                                .addComponent(cmboxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFecha)))
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDetalle)
                     .addComponent(btnActualizar)

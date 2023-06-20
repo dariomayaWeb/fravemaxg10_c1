@@ -36,7 +36,7 @@ public class VentaData {
                 venta.setIdVenta(rs.getInt("idVenta"));
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Venta agregada con exito");
+            JOptionPane.showMessageDialog(null, "Venta agregada con éxito");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " guardar venta, " + ex.getMessage());
         }
@@ -96,7 +96,7 @@ public class VentaData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Venta reabierta");
+            JOptionPane.showMessageDialog(null, "Venta abierta");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }

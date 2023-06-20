@@ -1,12 +1,35 @@
-
 package Vista;
 
+import Controlador.ClienteData;
+import Controlador.VentaData;
+import Modelo.Cliente;
+import Modelo.Venta;
+import java.awt.event.ItemListener;
+import java.sql.Date;
+import java.time.LocalDate;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 public class VentaView extends javax.swing.JInternalFrame {
 
-    
+    private VentaData ventaData;
+    private ClienteData clienteData;
+
     public VentaView() {
         initComponents();
+        ventaData = new VentaData();
+        clienteData = new ClienteData();
+        cargarClientes();
+    }
+
+    public void cargarClientes() {
+        int num = clienteData.listarCliente().size();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) comboC.getModel();
+        comboC.setModel(modelo);
+        for (int i = 0; i < num; i++) {
+            modelo.addElement(clienteData.listarCliente().get(i));
+        }
     }
 
     /**
@@ -21,29 +44,30 @@ public class VentaView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtIdCliente = new javax.swing.JLabel();
         txtFechaVenta = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        lbelEstado = new javax.swing.JLabel();
+        textId = new javax.swing.JTextField();
         Guardar = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         Activar = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
+        textFecha = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        comboC = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Venta.png"))); // NOI18N
         jLabel1.setText("VENTA");
 
         txtIdCliente.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        txtIdCliente.setText("idCliente");
+        txtIdCliente.setText("Id");
 
         txtFechaVenta.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtFechaVenta.setText("Fecha de venta");
 
-        txtEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        txtEstado.setText("Estado");
+        lbelEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        lbelEstado.setText("Estado");
 
         Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.jpg"))); // NOI18N
         Guardar.setText("Guardar");
@@ -92,6 +116,9 @@ public class VentaView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel2.setText("Cliente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,16 +131,15 @@ public class VentaView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFechaVenta)
                             .addComponent(txtIdCliente)
-                            .addComponent(txtEstado)
-                            .addComponent(Activar))
+                            .addComponent(lbelEstado)
+                            .addComponent(Activar)
+                            .addComponent(jLabel2))
                         .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Eliminar))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textId, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(Eliminar)
+                            .addComponent(comboC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,33 +157,38 @@ public class VentaView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtIdCliente)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(115, Short.MAX_VALUE)
                         .addComponent(Buscar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Guardar)
-                        .addGap(27, 27, 27)
-                        .addComponent(Actualizar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 37, Short.MAX_VALUE)
+                                .addComponent(Guardar)
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actualizar)
+                            .addComponent(lbelEstado))
                         .addGap(49, 49, 49)
                         .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFechaVenta)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEstado)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                            .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Eliminar)
                             .addComponent(Activar))
@@ -168,27 +199,63 @@ public class VentaView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        // TODO add your handling code here:
+        Cliente cliente = (Cliente) (comboC.getModel().getSelectedItem());
+        LocalDate fecha = LocalDate.parse(textFecha.getDateFormatString());
+        if (cliente.getIdCliente() != 0 && fecha != null) {
+            boolean estado = true;
+            Venta venta = new Venta(fecha, cliente, estado);
+            ventaData.guardarVenta(venta);
+            textId.setText(venta.getIdVenta() + "");
+            lbelEstado.setText("Abierta");
+        }
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        // TODO add your handling code here:
+        if (textId.getText() != null) {
+            LocalDate fecha = LocalDate.parse(textFecha.getDateFormatString());
+            Cliente cliente = (Cliente) (comboC.getModel().getSelectedItem());
+            String abierta = lbelEstado.getText();
+            boolean estado;
+            if ("Abierta".equals(abierta)) {
+                estado = true;
+            } else {
+                estado = false;
+            }
+            Venta venta = new Venta(fecha, cliente, estado);
+            ventaData.modificarVenta(venta);
+        }
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
+        int id = Integer.parseInt(textId.getText());
+        Venta venta = ventaData.buscarVenta(id);
+        if (venta != null) {
+            textId.setText(venta.getIdVenta() + "");
+            textFecha.setDate(Date.valueOf(venta.getFecha()));
+            Cliente c = venta.getCliente();
+            comboC.setModel((ComboBoxModel<Cliente>) c);
+            if (venta.isEstado() == true) {
+                lbelEstado.setText("Abierta");
+            } else if (venta.isEstado() == false) {
+                lbelEstado.setText("Cerrada");
+            }
+        }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void ActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarActionPerformed
-        // TODO add your handling code here:
+        int id = Integer.parseInt(textId.getText());
+        ventaData.reabrirVenta(id);
+        lbelEstado.setText("Abierta");
     }//GEN-LAST:event_ActivarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
+        int id = Integer.parseInt(textId.getText());
+        ventaData.CerrarVenta(id);
+        lbelEstado.setText("Cerrada");
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_SalirActionPerformed
 
 
@@ -199,11 +266,12 @@ public class VentaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Guardar;
     private javax.swing.JButton Salir;
+    private javax.swing.JComboBox<Cliente> comboC;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel txtEstado;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbelEstado;
+    private com.toedter.calendar.JDateChooser textFecha;
+    private javax.swing.JTextField textId;
     private javax.swing.JLabel txtFechaVenta;
     private javax.swing.JLabel txtIdCliente;
     // End of variables declaration//GEN-END:variables

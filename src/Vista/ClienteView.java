@@ -27,7 +27,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lbelEstado = new javax.swing.JLabel();
         textClienteId = new javax.swing.JTextField();
         textClienteNombre = new javax.swing.JTextField();
         textClienteApellido = new javax.swing.JTextField();
@@ -66,8 +66,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel5.setText("Teléfono:");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel6.setText("Estado:");
+        lbelEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        lbelEstado.setText("Estado:");
 
         btnGuardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.jpg"))); // NOI18N
         btnGuardarCliente.setText("Guardar");
@@ -159,10 +159,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                 .addComponent(textClienteTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
+                                    .addComponent(lbelEstado)
                                     .addComponent(lblDni)
                                     .addComponent(jLabel2))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(71, 71, 71)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -170,8 +170,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                             .addComponent(textClienteId, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                                             .addComponent(textClienteDni)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                                        .addComponent(lbelClienteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbelClienteEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))))))
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnClienteBuscarId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,9 +184,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(140, 140, 140)
-                                .addComponent(jLabel7))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnActivarCliente)
                                 .addGap(60, 60, 60)
@@ -197,11 +196,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textClienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
@@ -232,7 +230,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                 .addComponent(btnLimpiarCliente)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
@@ -240,7 +237,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                         .addComponent(textClienteTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
+                                    .addComponent(lbelEstado)
                                     .addComponent(lbelClienteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
@@ -269,9 +266,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
             textClienteDomicilio.setText(cliente.getDomicilio() + "");
             textClienteTelefono.setText(cliente.getTelefono() + "");
             if (cliente.isEstado() == true) {
-                lbelClienteEstado.setText("Activo");
+                lbelEstado.setText("Activo");
             } else if (cliente.isEstado() == false) {
-                lbelClienteEstado.setText("Inactivo");
+                lbelEstado.setText("Inactivo");
             }
         }
     }//GEN-LAST:event_btnClienteBuscarIdActionPerformed
@@ -287,21 +284,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente(dni, apellido, nombre, domicilio, telefono, estado);
         clienteData.guardarCliente(cliente);
         textClienteId.setText(cliente.getIdCliente() + "");
-        lbelClienteEstado.setText("Activo");
+        lbelEstado.setText("Activo");
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(textClienteId.getText());
         clienteData.eliminarCliente(id);
-        lbelClienteEstado.setText("Inactivo");
+        lbelEstado.setText("Inactivo");
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void btnActivarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarClienteActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(textClienteId.getText());
         clienteData.activarCliente(id);
-        lbelClienteEstado.setText("Activo");
+        lbelEstado.setText("Activo");
     }//GEN-LAST:event_btnActivarClienteActionPerformed
 
     private void btnLimpiarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarClienteActionPerformed
@@ -312,7 +309,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         textClienteApellido.setText("");
         textClienteDomicilio.setText("");
         textClienteTelefono.setText("");
-        lbelClienteEstado.setText("");
+        lbelEstado.setText("");
     }//GEN-LAST:event_btnLimpiarClienteActionPerformed
 
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
@@ -324,7 +321,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
             String apellido = textClienteApellido.getText();
             String domicilio = textClienteDomicilio.getText();
             String telefono = textClienteTelefono.getText();
-            String activo = lbelClienteEstado.getText();
+            String activo = lbelEstado.getText();
             boolean estado;
             if ("ACtivo".equals(activo)) {
                 estado = true;
@@ -353,9 +350,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
             textClienteDomicilio.setText(cliente.getDomicilio() + "");
             textClienteTelefono.setText(cliente.getTelefono() + "");
             if (cliente.isEstado() == true) {
-                lbelClienteEstado.setText("Activo");
+                lbelEstado.setText("Activo");
             } else if (cliente.isEstado() == false) {
-                lbelClienteEstado.setText("Inactivo");
+                lbelEstado.setText("Inactivo");
             }
         }
       
@@ -376,9 +373,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lbelClienteEstado;
+    private javax.swing.JLabel lbelEstado;
     private javax.swing.JLabel lblDni;
     private javax.swing.JTextField textClienteApellido;
     private javax.swing.JTextField textClienteDni;
