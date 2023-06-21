@@ -113,7 +113,7 @@ public class ListaDetalleVenta extends javax.swing.JInternalFrame {
         txtFecha.setPreferredSize(new java.awt.Dimension(100, 26));
 
         txtCliente.setEditable(false);
-        txtCliente.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtCliente.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtCliente.setMinimumSize(new java.awt.Dimension(160, 26));
         txtCliente.setPreferredSize(new java.awt.Dimension(160, 26));
 
@@ -160,7 +160,7 @@ public class ListaDetalleVenta extends javax.swing.JInternalFrame {
         });
 
         btnNuevoDet.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnNuevoDet.setText("Nuevo");
+        btnNuevoDet.setText("Agregar");
         btnNuevoDet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoDetActionPerformed(evt);
@@ -247,7 +247,7 @@ public class ListaDetalleVenta extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int filaSelecionada = tablaDetallesVenta.getSelectedRow();
         if (filaSelecionada < 0) {
-            JOptionPane.showMessageDialog(null, "Elija un detalle para ver modificar");
+            JOptionPane.showMessageDialog(null, "Elija un detalle para modificar");
         } else {
             int idDetVenta = Integer.parseInt(tablaDetallesVenta.getValueAt(filaSelecionada, 0).toString()) ;
             DetalleVentaView detVentView = new DetalleVentaView(idDetVenta);

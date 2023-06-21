@@ -14,19 +14,20 @@ public class DetalleCompra {
     public DetalleCompra() {
     }
 
-    public DetalleCompra(int cantidad, double precioCosto, Compra compra, Producto producto) {
+    public DetalleCompra(int cantidad, Compra compra, Producto producto) {
         this.cantidad = cantidad;
-        this.precioCosto = precioCosto;
         this.compra = compra;
         this.producto = producto;
+        this.precioCosto = producto.getPrecioActual()*cantidad;
     }
 
-    public DetalleCompra(int idDetalle, int cantidad, double precioCosto, Compra compra, Producto producto) {
+    public DetalleCompra(int idDetalle, int cantidad, Compra compra, Producto producto) {
         this.idDetalle = idDetalle;
         this.cantidad = cantidad;
-        this.precioCosto = precioCosto;
         this.compra = compra;
         this.producto = producto;
+        this.precioCosto = producto.getPrecioActual()*cantidad;
+        
     }
 
     public int getIdDetalle() {

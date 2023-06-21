@@ -69,7 +69,7 @@ public class Proveedor {
 
     @Override
     public String toString() {
-        return  idProveedor + " Razon Social= " + razonSocial ;
+        return  idProveedor + "- " + razonSocial  ;
     }
     
 }

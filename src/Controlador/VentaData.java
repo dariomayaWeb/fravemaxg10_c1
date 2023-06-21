@@ -96,7 +96,7 @@ public class VentaData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Venta abierta");
+            JOptionPane.showMessageDialog(null, "Venta reabierta");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + " venta, " + ex.getMessage());
         }

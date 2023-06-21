@@ -97,7 +97,8 @@ public class DetalleCompraData {
     public List<DetalleCompra> listaDetalleCompras(int idCompra) {
         ArrayList<DetalleCompra> listaDetalleCompras = new ArrayList();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from detallecompra WHERE idCompra=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM detallecompra WHERE idCompra=?");
+            ps.setInt(1, idCompra);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 DetalleCompra detalleCompra = new DetalleCompra();
@@ -109,7 +110,6 @@ public class DetalleCompraData {
                 listaDetalleCompras.add(detalleCompra);
             }
             ps.close();
-            rs.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en buscar el detalle de Compras, " + ex.getMessage());
@@ -129,5 +129,13 @@ public class DetalleCompraData {
         }
     }
         
-    
+    public double montoTotal(int idCompra){
+        double monto = 0.0;
+        ArrayList<DetalleCompra> listaDetalleCompras = new ArrayList();
+        listaDetalleCompras = (ArrayList)this.listaDetalleCompras(idCompra);
+        for (DetalleCompra detCompra : listaDetalleCompras) {
+            monto = monto + detCompra.getPrecioCosto();
+        }
+        return monto;
+    }
 }

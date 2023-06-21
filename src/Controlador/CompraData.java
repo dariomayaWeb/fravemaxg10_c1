@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -41,7 +42,7 @@ public class CompraData {
         }
     }
 
-    public void darDebajaCompra(int id) {
+    public void cerrarCompra(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE compra SET estado=0 WHERE idCompra=?;");
             ps.setInt(1, id);
@@ -53,7 +54,7 @@ public class CompraData {
         }
     }
 
-    public void darDeAltaCompra(int id) {
+    public void reabrirCompra(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE compra SET estado=1 WHERE idCompra=?;");
             ps.setInt(1, id);
@@ -92,7 +93,7 @@ public class CompraData {
         ProveedorData proveedorData = new ProveedorData();
         ArrayList<Compra> lista = new ArrayList();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from compra;");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM compra");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Compra compra = new Compra();
@@ -103,7 +104,6 @@ public class CompraData {
                 lista.add(compra);
             }
             ps.close();
-            rs.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en buscar CompraData, " + ex.getMessage());
@@ -122,5 +122,75 @@ public class CompraData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en modificar CompraData, " + ex.getMessage());
         }
+    }
+
+    public List<Compra> listarComprasProveedor(int idProveedor) {
+        ArrayList<Compra> lista = new ArrayList();
+        ProveedorData provData = new ProveedorData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM compra WHERE estado=1 AND idProveedor=? ORDER BY fecha DESC");
+            ps.setInt(1, idProveedor);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Compra compra = new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setProveedor(provData.buscarProveedor(rs.getInt("idProveedor")));
+                compra.setEstado(rs.getBoolean("estado"));
+                lista.add(compra);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista compra, " + ex.getMessage());
+        }
+
+        return lista;
+    }     
+
+    public List<Compra> listarComprasFecha(LocalDate fecha ) {
+        ArrayList<Compra> lista = new ArrayList();
+        ProveedorData provData = new ProveedorData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM compra AS C, proveedor AS P WHERE C.idProveedor=P.idProveedor AND C.estado=1 AND fecha=? ORDER BY razonSocial");
+            ps.setDate(1, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Compra compra = new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setProveedor(provData.buscarProveedor(rs.getInt("idProveedor")));
+                compra.setEstado(rs.getBoolean("C.estado"));
+                lista.add(compra);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista compra, " + ex.getMessage());
+        }
+
+        return lista;
+    }
+
+    public List<Compra> listarComprasProveedorFecha(int idProveedor, LocalDate fecha ) {
+        ArrayList<Compra> lista = new ArrayList();
+        ProveedorData provData = new ProveedorData();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM compra AS C, proveedor AS P WHERE C.idProveedor=P.idProveedor AND C.estado=1 AND C.idProveedor=? AND fecha=? ");
+            ps.setInt(1, idProveedor);
+            ps.setDate(2, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Compra compra = new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setProveedor(provData.buscarProveedor(rs.getInt("idProveedor")));
+                compra.setEstado(rs.getBoolean("C.estado"));
+                lista.add(compra);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en lista compra, " + ex.getMessage());
+        }
+
+        return lista;
     }
 }

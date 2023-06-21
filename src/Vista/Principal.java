@@ -40,24 +40,20 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
-        ClienteView = new javax.swing.JMenuItem();
-        listaClientes = new javax.swing.JMenuItem();
+        mnuClientes = new javax.swing.JMenuItem();
+        mnuListaClientes = new javax.swing.JMenuItem();
         Ventas = new javax.swing.JMenu();
-        listaVentas = new javax.swing.JMenuItem();
+        mnuListaVentas = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        RegistrarProducto = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        Compras = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        Compra = new javax.swing.JMenuItem();
+        mnuProducto = new javax.swing.JMenuItem();
+        mnuListaProductos = new javax.swing.JMenuItem();
         pro = new javax.swing.JMenu();
-        proveedor = new javax.swing.JMenuItem();
-        listaProveedores = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        listaVenras = new javax.swing.JMenuItem();
-        Venta = new javax.swing.JMenuItem();
+        mnuProveedores = new javax.swing.JMenuItem();
+        mnuListaProveedores = new javax.swing.JMenuItem();
+        Compras = new javax.swing.JMenu();
+        mnuCompras = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
-        Salir = new javax.swing.JMenuItem();
+        mnuSalir = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -89,132 +85,118 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem11.setText("jMenuItem11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
+        EscritorioPrinc.setMaximumSize(new java.awt.Dimension(800, 600));
+        EscritorioPrinc.setMinimumSize(new java.awt.Dimension(800, 600));
         EscritorioPrinc.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout EscritorioPrincLayout = new javax.swing.GroupLayout(EscritorioPrinc);
         EscritorioPrinc.setLayout(EscritorioPrincLayout);
         EscritorioPrincLayout.setHorizontalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 803, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         EscritorioPrincLayout.setVerticalGroup(
             EscritorioPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 629, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jMenu4.setText("Clientes");
 
-        ClienteView.setText("Administrar clientes");
-        ClienteView.addActionListener(new java.awt.event.ActionListener() {
+        mnuClientes.setText("Administrar clientes");
+        mnuClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClienteViewActionPerformed(evt);
+                mnuClientesActionPerformed(evt);
             }
         });
-        jMenu4.add(ClienteView);
+        jMenu4.add(mnuClientes);
 
-        listaClientes.setText("LIsta de clientes");
-        listaClientes.addActionListener(new java.awt.event.ActionListener() {
+        mnuListaClientes.setText("LIsta de clientes");
+        mnuListaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaClientesActionPerformed(evt);
+                mnuListaClientesActionPerformed(evt);
             }
         });
-        jMenu4.add(listaClientes);
+        jMenu4.add(mnuListaClientes);
 
         jMenuBar2.add(jMenu4);
 
         Ventas.setText("Ventas");
 
-        listaVentas.setText("Administrar Ventas");
-        listaVentas.addActionListener(new java.awt.event.ActionListener() {
+        mnuListaVentas.setText("Administrar Ventas");
+        mnuListaVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaVentasActionPerformed(evt);
+                mnuListaVentasActionPerformed(evt);
             }
         });
-        Ventas.add(listaVentas);
+        Ventas.add(mnuListaVentas);
 
         jMenuBar2.add(Ventas);
 
         jMenu6.setText("Inventario");
 
-        RegistrarProducto.setText("Registrar producto");
-        RegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+        mnuProducto.setText("Registrar producto");
+        mnuProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistrarProductoActionPerformed(evt);
+                mnuProductoActionPerformed(evt);
             }
         });
-        jMenu6.add(RegistrarProducto);
+        jMenu6.add(mnuProducto);
 
-        jMenuItem5.setText("Lista de productos");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mnuListaProductos.setText("Lista de productos");
+        mnuListaProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mnuListaProductosActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem5);
+        jMenu6.add(mnuListaProductos);
 
         jMenuBar2.add(jMenu6);
 
-        Compras.setText("Compras");
-
-        jMenuItem3.setText("Administrar Compras");
-        Compras.add(jMenuItem3);
-
-        Compra.setText("Compra");
-        Compra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CompraActionPerformed(evt);
-            }
-        });
-        Compras.add(Compra);
-
-        jMenuBar2.add(Compras);
-
         pro.setText("Proveedor");
 
-        proveedor.setText("Administrar Proveedores");
-        proveedor.addActionListener(new java.awt.event.ActionListener() {
+        mnuProveedores.setText("Administrar Proveedores");
+        mnuProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                proveedorActionPerformed(evt);
+                mnuProveedoresActionPerformed(evt);
             }
         });
-        pro.add(proveedor);
+        pro.add(mnuProveedores);
 
-        listaProveedores.setText("Lista de Proveedores");
-        listaProveedores.addActionListener(new java.awt.event.ActionListener() {
+        mnuListaProveedores.setText("Lista de Proveedores");
+        mnuListaProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaProveedoresActionPerformed(evt);
+                mnuListaProveedoresActionPerformed(evt);
             }
         });
-        pro.add(listaProveedores);
+        pro.add(mnuListaProveedores);
 
         jMenuBar2.add(pro);
 
-        jMenu5.setText("Ventas");
+        Compras.setText("Compras");
 
-        listaVenras.setText("Administrar Ventas");
-        jMenu5.add(listaVenras);
-
-        Venta.setText("Venta");
-        Venta.addActionListener(new java.awt.event.ActionListener() {
+        mnuCompras.setText("Administrar Compras");
+        mnuCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VentaActionPerformed(evt);
+                mnuComprasActionPerformed(evt);
             }
         });
-        jMenu5.add(Venta);
+        Compras.add(mnuCompras);
 
-        jMenuBar2.add(jMenu5);
+        jMenuBar2.add(Compras);
 
         jMenu9.setText("Salir");
 
-        Salir.setText("Salir del Sistema");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
+        mnuSalir.setText("Salir del Sistema");
+        mnuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+                mnuSalirActionPerformed(evt);
             }
         });
-        jMenu9.add(Salir);
+        jMenu9.add(mnuSalir);
 
         jMenuBar2.add(jMenu9);
 
@@ -224,21 +206,17 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(EscritorioPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, 579, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ClienteViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteViewActionPerformed
+    private void mnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClientesActionPerformed
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -247,9 +225,9 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.add(clienteVw);
         EscritorioPrinc.moveToFront(clienteVw);
 
-    }//GEN-LAST:event_ClienteViewActionPerformed
+    }//GEN-LAST:event_mnuClientesActionPerformed
 
-    private void RegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarProductoActionPerformed
+    private void mnuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProductoActionPerformed
           // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -257,9 +235,9 @@ public class Principal extends javax.swing.JFrame {
         productoVw.setVisible(true);
         EscritorioPrinc.add(productoVw);
         EscritorioPrinc.moveToFront(productoVw);
-    }//GEN-LAST:event_RegistrarProductoActionPerformed
+    }//GEN-LAST:event_mnuProductoActionPerformed
 
-    private void listaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaClientesActionPerformed
+    private void mnuListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListaClientesActionPerformed
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -267,9 +245,9 @@ public class Principal extends javax.swing.JFrame {
         listaClienteVw.setVisible(true);
         EscritorioPrinc.add(listaClienteVw);
         EscritorioPrinc.moveToFront(listaClienteVw);
-    }//GEN-LAST:event_listaClientesActionPerformed
+    }//GEN-LAST:event_mnuListaClientesActionPerformed
 
-    private void listaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVentasActionPerformed
+    private void mnuListaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListaVentasActionPerformed
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -277,9 +255,9 @@ public class Principal extends javax.swing.JFrame {
         listaVentasView.setVisible(true);
         EscritorioPrinc.add(listaVentasView);
         EscritorioPrinc.moveToFront(listaVentasView);
-    }//GEN-LAST:event_listaVentasActionPerformed
+    }//GEN-LAST:event_mnuListaVentasActionPerformed
 
-    private void listaProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProveedoresActionPerformed
+    private void mnuListaProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListaProveedoresActionPerformed
         // TODO add your handling code here:
         EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -287,14 +265,14 @@ public class Principal extends javax.swing.JFrame {
         listaProView.setVisible(true);
         EscritorioPrinc.add(listaProView);
         EscritorioPrinc.moveToFront(listaProView);
-    }//GEN-LAST:event_listaProveedoresActionPerformed
+    }//GEN-LAST:event_mnuListaProveedoresActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+    private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mnuSalirActionPerformed
 
-    private void proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedorActionPerformed
+    private void mnuProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProveedoresActionPerformed
         // TODO add your handling code here:
          EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
@@ -303,37 +281,27 @@ public class Principal extends javax.swing.JFrame {
         EscritorioPrinc.add(ProView);
         EscritorioPrinc.moveToFront(ProView);
         
-    }//GEN-LAST:event_proveedorActionPerformed
+    }//GEN-LAST:event_mnuProveedoresActionPerformed
 
-    private void CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompraActionPerformed
+    private void mnuListaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListaProductosActionPerformed
         // TODO add your handling code here:
-         EscritorioPrinc.removeAll();
-        EscritorioPrinc.repaint();
-        CompraView ComView = new CompraView();
-        ComView.setVisible(true);
-        EscritorioPrinc.add(ComView);
-        EscritorioPrinc.moveToFront(ComView);
-    }//GEN-LAST:event_CompraActionPerformed
-
-    private void VentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentaActionPerformed
-        // TODO add your handling code here:
-         EscritorioPrinc.removeAll();
-        EscritorioPrinc.repaint();
-        VentaView venView = new VentaView();
-        venView.setVisible(true);
-        EscritorioPrinc.add(venView);
-        EscritorioPrinc.moveToFront(venView);
-    }//GEN-LAST:event_VentaActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-         EscritorioPrinc.removeAll();
+        EscritorioPrinc.removeAll();
         EscritorioPrinc.repaint();
         InventarioProductosView venView = new InventarioProductosView();
         venView.setVisible(true);
         EscritorioPrinc.add(venView);
         EscritorioPrinc.moveToFront(venView);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_mnuListaProductosActionPerformed
+
+    private void mnuComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuComprasActionPerformed
+        // TODO add your handling code here:
+        EscritorioPrinc.removeAll();
+        EscritorioPrinc.repaint();
+        ListaCompras listaComp = new ListaCompras();
+        listaComp.setVisible(true);
+        EscritorioPrinc.add(listaComp);
+        EscritorioPrinc.moveToFront(listaComp);
+    }//GEN-LAST:event_mnuComprasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,20 +340,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem ClienteView;
-    private javax.swing.JMenuItem Compra;
     private javax.swing.JMenu Compras;
     public static javax.swing.JDesktopPane EscritorioPrinc;
-    private javax.swing.JMenuItem RegistrarProducto;
-    private javax.swing.JMenuItem Salir;
-    private javax.swing.JMenuItem Venta;
     private javax.swing.JMenu Ventas;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
@@ -394,18 +356,20 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JMenuItem listaClientes;
-    private javax.swing.JMenuItem listaProveedores;
-    private javax.swing.JMenuItem listaVenras;
-    private javax.swing.JMenuItem listaVentas;
+    private javax.swing.JMenuItem mnuClientes;
+    private javax.swing.JMenuItem mnuCompras;
+    private javax.swing.JMenuItem mnuListaClientes;
+    private javax.swing.JMenuItem mnuListaProductos;
+    private javax.swing.JMenuItem mnuListaProveedores;
+    private javax.swing.JMenuItem mnuListaVentas;
+    private javax.swing.JMenuItem mnuProducto;
+    private javax.swing.JMenuItem mnuProveedores;
+    private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JMenu pro;
-    private javax.swing.JMenuItem proveedor;
     // End of variables declaration//GEN-END:variables
 }
