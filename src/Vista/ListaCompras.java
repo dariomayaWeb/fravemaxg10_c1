@@ -38,6 +38,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
         listaProveedor = (ArrayList) provData.listarProveedor();
         compraData = new CompraData();
         detCompraData = new DetalleCompraData();
+        listaCompras = (ArrayList) compraData.listaCompras();
 
         cargarProveedores();
         armarCabecera();
@@ -246,7 +247,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
             LocalDate fechaLD = parsearFecha(fechaDate);
             Compra nuevaCompra = new Compra(proveedor, fechaLD, true);
             compraData.guardarCompra(nuevaCompra);
-            cargarDatos(listaCompras);
+            actualizar();
             cargarProveedores();
             calendarFecha.setDate(null);
         } else {
@@ -277,7 +278,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        cargarDatos(listaCompras);
+        actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnCerrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarCompraActionPerformed
@@ -288,7 +289,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
         } else {
             int idCompra = Integer.parseInt(tablaCompra.getValueAt(filaSelecionada, 0).toString());
             compraData.cerrarCompra(idCompra);
-            cargarDatos(listaCompras);
+            actualizar();
         }
     }//GEN-LAST:event_btnCerrarCompraActionPerformed
 
@@ -305,7 +306,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
         } else {
             int idCompra = Integer.parseInt(tablaCompra.getValueAt(filaSelecionada, 0).toString());
             compraData.reabrirCompra(idCompra);
-            cargarDatos(listaCompras);
+            actualizar();
         }
     }//GEN-LAST:event_btnActivarActionPerformed
 
@@ -322,7 +323,7 @@ public class ListaCompras extends javax.swing.JInternalFrame {
                 LocalDate fechaLD = parsearFecha(fechaDate);
                 Compra compraEditar = new Compra(idCompra, proveedor, fechaLD, true);
                 compraData.modificarCompra(compraEditar);
-                cargarDatos(listaCompras);
+                actualizar();
                 cargarProveedores();
                 calendarFecha.setDate(null);
             } else {
@@ -389,7 +390,6 @@ public class ListaCompras extends javax.swing.JInternalFrame {
     }
 
     private void cargarDatos(ArrayList listaCompras) {
-        listaCompras = (ArrayList) compraData.listaCompras();
         borrarFilasTabla();
         double monto = 0.0;
         String estado = "";
@@ -412,6 +412,13 @@ public class ListaCompras extends javax.swing.JInternalFrame {
         }
     }
 
+    private void actualizar(){
+        listaCompras = (ArrayList) compraData.listaCompras();
+        cargarDatos(listaCompras);
+        cargarProveedores();
+        calendarFecha.setDate(null);
+    }
+    
     public LocalDate parsearFecha(Date fechaDate) {
         long fechaLong = fechaDate.getTime();
         java.sql.Date fechaSql = new java.sql.Date(fechaLong);

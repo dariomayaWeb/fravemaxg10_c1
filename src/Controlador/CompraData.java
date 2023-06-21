@@ -48,7 +48,7 @@ public class CompraData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Compra eliminada");
+            JOptionPane.showMessageDialog(null, "Compra cerrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en eliminar CompraData, " + ex.getMessage());
         }
@@ -60,7 +60,7 @@ public class CompraData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Compra dada de alta");
+            JOptionPane.showMessageDialog(null, "Compra reabierta");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en eliminar CompraData, " + ex.getMessage());
         }

@@ -38,6 +38,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         listaClientes = (ArrayList) clData.listarCliente();
         ventaData = new VentaData();
         detVentaData = new DetalleVentaData();
+        listaVentas = (ArrayList) ventaData.listarVentas();
         
         cargarClientes();
         armarCabecera();
@@ -57,7 +58,6 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         lblSelecCliente = new javax.swing.JLabel();
         cmboxClientes = new javax.swing.JComboBox<>();
         lblFecha = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
         btnDetalle = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVentas = new javax.swing.JTable();
@@ -68,6 +68,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         btnActivar = new javax.swing.JButton();
         btnEditarVenta = new javax.swing.JButton();
         calendarFecha = new com.toedter.calendar.JDateChooser();
+        btnBuscar = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(700, 530));
         setPreferredSize(new java.awt.Dimension(700, 530));
@@ -80,14 +81,6 @@ public class ListaVentas extends javax.swing.JInternalFrame {
 
         lblFecha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblFecha.setText("Fecha:");
-
-        btnBuscar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
 
         btnDetalle.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnDetalle.setText("Ver Detalle");
@@ -159,6 +152,14 @@ public class ListaVentas extends javax.swing.JInternalFrame {
             }
         });
 
+        btnBuscar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,16 +170,16 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSelecCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmboxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(calendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnBuscar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDetalle)
@@ -190,11 +191,15 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                         .addComponent(btnCerrarVenta)
                         .addGap(18, 18, 18)
                         .addComponent(btnActivar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevaVenta, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNuevaVenta)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(37, 37, 37)
@@ -210,8 +215,8 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnNuevaVenta))
+                            .addComponent(btnNuevaVenta)
+                            .addComponent(btnBuscar))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblSelecCliente)
@@ -219,7 +224,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                                 .addComponent(lblFecha))
                             .addGap(2, 2, 2)))
                     .addComponent(calendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDetalle)
                     .addComponent(btnActualizar)
@@ -237,25 +242,6 @@ public class ListaVentas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        Cliente cliente = (Cliente) cmboxClientes.getSelectedItem();
-        Date fechaDate = calendarFecha.getDate();
-        if (cliente.getIdCliente() != 0 && fechaDate != null) {
-            LocalDate fechaLD = parsearFecha(fechaDate);
-            ArrayList<Venta> ventaClienteFecha = (ArrayList<Venta>) ventaData.listarVentasClienteFecha(cliente.getIdCliente(), fechaLD);
-            cargarDatos(ventaClienteFecha);
-
-        } else if (cliente.getIdCliente() != 0 && fechaDate == null) {
-            ArrayList<Venta> ventasCliente = (ArrayList<Venta>) ventaData.listarVentasCliente(cliente.getIdCliente());
-            cargarDatos(ventasCliente);
-        } else if (cliente.getIdCliente() == 0 && fechaDate != null) {
-            LocalDate fechaLD = parsearFecha(fechaDate);
-            ArrayList<Venta> ventasFecha = (ArrayList<Venta>) ventaData.listarVentasFecha(fechaLD);
-            cargarDatos(ventasFecha);
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleActionPerformed
         // TODO add your handling code here:
@@ -284,13 +270,13 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         } else {
             int idVenta = Integer.parseInt(tablaVentas.getValueAt(filaSelecionada, 0).toString());
             ventaData.CerrarVenta(idVenta);
-            cargarDatos(listaVentas);
+            actualizar();
         }
     }//GEN-LAST:event_btnCerrarVentaActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        cargarDatos(listaVentas);
+        actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
@@ -301,7 +287,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         } else {
             int idVenta = Integer.parseInt(tablaVentas.getValueAt(filaSelecionada, 0).toString());
             ventaData.reabrirVenta(idVenta);
-            cargarDatos(listaVentas);
+            actualizar();
         }
     }//GEN-LAST:event_btnActivarActionPerformed
 
@@ -313,7 +299,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
             LocalDate fechaLD = parsearFecha(fechaDate);
             Venta nuevaVenta = new Venta(fechaLD, cliente, true);
             ventaData.guardarVenta(nuevaVenta);
-            cargarDatos(listaVentas);
+            actualizar();
             cargarClientes();
             calendarFecha.setDate(null);
         } else {
@@ -336,7 +322,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
                 LocalDate fechaLD = parsearFecha(fechaDate);
                 Venta ventaEditar = new Venta(idVenta, fechaLD, cliente, true);
                 ventaData.modificarVenta(ventaEditar);
-                cargarDatos(listaVentas);
+                actualizar();
                 cargarClientes();
                 calendarFecha.setDate(null);
             } else {
@@ -346,6 +332,24 @@ public class ListaVentas extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        Cliente cliente = (Cliente) cmboxClientes.getSelectedItem();
+        Date fechaDate = calendarFecha.getDate();
+        if (cliente.getIdCliente()!=0 && fechaDate != null) {
+            LocalDate fechaLD = parsearFecha(fechaDate);
+            ArrayList<Venta> ventaClienteFecha = (ArrayList<Venta>) ventaData.listarVentasClienteFecha(cliente.getIdCliente(), fechaLD);
+            cargarDatos(ventaClienteFecha);
+        } else if (cliente.getIdCliente() != 0 && fechaDate == null) {
+            ArrayList<Venta> ventasCliente = (ArrayList<Venta>) ventaData.listarVentasCliente(cliente.getIdCliente());
+            cargarDatos(ventasCliente);
+        } else if (cliente.getIdCliente() == 0 && fechaDate != null) {
+            LocalDate fechaLD = parsearFecha(fechaDate);
+            ArrayList<Venta> ventasFecha = (ArrayList<Venta>) ventaData.listarVentasFecha(fechaLD);
+            cargarDatos(ventasFecha);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -391,7 +395,6 @@ public class ListaVentas extends javax.swing.JInternalFrame {
     }
 
     private void cargarDatos(ArrayList listaVentas) {
-        listaVentas = (ArrayList) ventaData.listarVentas();
         borrarFilasTabla();
         double monto = 0.0;
         String estado = "";
@@ -412,6 +415,13 @@ public class ListaVentas extends javax.swing.JInternalFrame {
         for (int i = a; i >= 0; i--) {
             modelo.removeRow(i);
         }
+    }
+    
+    private void actualizar(){
+        listaVentas = (ArrayList) ventaData.listarVentas();
+        cargarDatos(listaVentas);
+        cargarClientes();
+        calendarFecha.setDate(null);
     }
 
     public LocalDate parsearFecha(Date fechaDate) {
