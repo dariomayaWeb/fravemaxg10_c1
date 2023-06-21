@@ -53,6 +53,7 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jRbCategoria = new javax.swing.JRadioButton();
         jRbNombre = new javax.swing.JRadioButton();
+        Salir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -115,6 +116,14 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
             }
         });
 
+        Salir.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +148,11 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBLimpiar))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Salir)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +170,9 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
                     .addComponent(jBLimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Salir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,6 +220,11 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
         borrarFilas();
     }//GEN-LAST:event_jRbNombreActionPerformed
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_SalirActionPerformed
+
     
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,6 +260,7 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Salir;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JLabel jLabel1;

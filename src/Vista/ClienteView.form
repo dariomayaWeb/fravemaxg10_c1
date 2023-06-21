@@ -225,10 +225,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteId">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textClienteIdKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteNombre">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textClienteNombreKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteApellido">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textClienteApellidoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteDomicilio">
     </Component>
@@ -318,6 +327,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteTelefono">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textClienteTelefonoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDni">
       <Properties>
@@ -328,6 +340,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textClienteDni">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textClienteDniKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarDni">
       <Properties>

@@ -3,6 +3,7 @@ package Vista;
 import conexion.Conexion;
 import Controlador.ClienteData;
 import Modelo.Cliente;
+import javax.swing.JOptionPane;
 
 public class ClienteView extends javax.swing.JInternalFrame {
 
@@ -69,6 +70,24 @@ public class ClienteView extends javax.swing.JInternalFrame {
         lbelEstado.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lbelEstado.setText("Estado:");
 
+        textClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteIdKeyTyped(evt);
+            }
+        });
+
+        textClienteNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteNombreKeyTyped(evt);
+            }
+        });
+
+        textClienteApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteApellidoKeyTyped(evt);
+            }
+        });
+
         btnGuardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.jpg"))); // NOI18N
         btnGuardarCliente.setText("Guardar");
         btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -126,8 +145,20 @@ public class ClienteView extends javax.swing.JInternalFrame {
             }
         });
 
+        textClienteTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteTelefonoKeyTyped(evt);
+            }
+        });
+
         lblDni.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblDni.setText("DNI");
+
+        textClienteDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textClienteDniKeyTyped(evt);
+            }
+        });
 
         btnBuscarDni.setText("Buscar por DNI");
         btnBuscarDni.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +341,9 @@ public class ClienteView extends javax.swing.JInternalFrame {
         textClienteDomicilio.setText("");
         textClienteTelefono.setText("");
         lbelEstado.setText("");
+         if(textClienteId.getText()==""){
+        textClienteId.requestFocus();
+         }
     }//GEN-LAST:event_btnLimpiarClienteActionPerformed
 
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
@@ -357,6 +391,65 @@ public class ClienteView extends javax.swing.JInternalFrame {
         }
       
     }//GEN-LAST:event_btnBuscarDniActionPerformed
+
+    private void textClienteIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteIdKeyTyped
+         int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro =k == 8;
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteId.setText("");
+            textClienteId.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteIdKeyTyped
+
+    private void textClienteDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteDniKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro =k == 8;
+        boolean espacio =k == 32;
+        if (!(numeros || retro || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteDni.setText("");
+            textClienteDni.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteDniKeyTyped
+
+    private void textClienteNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteNombreKeyTyped
+        int k = evt.getKeyChar();
+        boolean letras = k >= 65 && k <= 122;
+        boolean retro =k == 8;
+        boolean espacio =k == 32;
+        if (!(letras || retro || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
+            textClienteDni.setText("");
+            textClienteDni.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteNombreKeyTyped
+
+    private void textClienteApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteApellidoKeyTyped
+         int k = evt.getKeyChar();
+        boolean letras = k >= 65 && k <= 122;
+        boolean retro =k == 8;
+        boolean espacio =k == 32;
+        if (!(letras || retro || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un apellido");
+            textClienteDni.setText("");
+            textClienteDni.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteApellidoKeyTyped
+
+    private void textClienteTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteTelefonoKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro =k == 8;
+        boolean espacio =k == 32;
+        if (!(numeros || retro || espacio)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteDni.setText("");
+            textClienteDni.requestFocus();
+        }
+    }//GEN-LAST:event_textClienteTelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
