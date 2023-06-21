@@ -73,6 +73,9 @@ public class ListaClientes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaClientes.setMaximumSize(new java.awt.Dimension(300, 200));
+        tablaClientes.setMinimumSize(new java.awt.Dimension(300, 200));
+        tablaClientes.setPreferredSize(new java.awt.Dimension(300, 200));
         jScrollPane1.setViewportView(tablaClientes);
 
         Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.jpg"))); // NOI18N
@@ -95,7 +98,7 @@ public class ListaClientes extends javax.swing.JInternalFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                        .addGap(207, 207, 207)
                         .addComponent(Salir)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -105,10 +108,10 @@ public class ListaClientes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Salir)
-                .addGap(23, 23, 23))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
