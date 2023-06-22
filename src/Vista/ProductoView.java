@@ -144,6 +144,11 @@ public class ProductoView extends javax.swing.JInternalFrame {
         });
 
         textProductoNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        textProductoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textProductoNombreKeyTyped(evt);
+            }
+        });
 
         textProductoPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -448,6 +453,17 @@ public class ProductoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void textProductoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textProductoNombreKeyTyped
+          int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro =k == 8;
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textProductoNombre.setText("");
+            textProductoNombre.requestFocus();
+        }
+    }//GEN-LAST:event_textProductoNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

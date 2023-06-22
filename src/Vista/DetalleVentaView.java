@@ -32,12 +32,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private VentaData ventaData;
     private Venta venta;
     private Producto prodComboBox;
-    
+    private Producto producto;
+
     public DetalleVentaView(int idDetVenta) {
         initComponents();
         this.idDetVenta = idDetVenta;
         proData = new ProductoData();
-        listaCategorias = (ArrayList)proData.listarCategorias();
+        listaCategorias = (ArrayList) proData.listarCategorias();
         detVentData = new DetalleVentaData();
         prodComboBox = new Producto();
         btnGuardar.setVisible(false);
@@ -50,16 +51,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         initComponents();
         this.venta = venta;
         proData = new ProductoData();
-        listaCategorias = (ArrayList)proData.listarCategorias();
+        listaCategorias = (ArrayList) proData.listarCategorias();
         detVentData = new DetalleVentaData();
         prodComboBox = new Producto();
         btnModificar.setVisible(false);
         cargarCategorias();
         cargarProductos();
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,6 +87,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         lblProdDetalle = new javax.swing.JLabel();
         textProdDetalle = new javax.swing.JTextField();
         btnPrecio = new javax.swing.JButton();
+        textStock = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(650, 530));
         setMinimumSize(new java.awt.Dimension(650, 530));
@@ -111,10 +111,25 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         textIdDetalleVenta.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         textIdDetalleVenta.setMinimumSize(new java.awt.Dimension(50, 26));
         textIdDetalleVenta.setPreferredSize(new java.awt.Dimension(50, 26));
+        textIdDetalleVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textIdDetalleVentaKeyTyped(evt);
+            }
+        });
 
         textCantidad.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         textCantidad.setMinimumSize(new java.awt.Dimension(50, 26));
         textCantidad.setPreferredSize(new java.awt.Dimension(50, 26));
+        textCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCantidadActionPerformed(evt);
+            }
+        });
+        textCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textCantidadKeyTyped(evt);
+            }
+        });
 
         textProducto.setEditable(false);
         textProducto.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -166,6 +181,11 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         textPrecioProducto.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         textPrecioProducto.setMinimumSize(new java.awt.Dimension(50, 26));
         textPrecioProducto.setPreferredSize(new java.awt.Dimension(50, 26));
+        textPrecioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textPrecioProductoKeyTyped(evt);
+            }
+        });
 
         lblProdDetalle.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblProdDetalle.setText("Descripción:");
@@ -182,6 +202,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 btnPrecioActionPerformed(evt);
             }
         });
+
+        textStock.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textStock.setForeground(new java.awt.Color(0, 52, 255));
+        textStock.setText("STOCK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,6 +240,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(textStock)
+                                            .addGap(67, 67, 67)
                                             .addComponent(btnPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +288,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrecio))
+                    .addComponent(btnPrecio)
+                    .addComponent(textStock))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -275,7 +302,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                             .addComponent(btnModificar)
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,35 +311,42 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         String cantTexto = textCantidad.getText();
-        
-        if (!"".equals(cantTexto) && prodComboBox.getIdProducto()>0){
-            try{
+
+        if (!"".equals(cantTexto) && prodComboBox.getIdProducto() > 0) {
+            try {
                 int cantidad = Integer.parseInt(textCantidad.getText());
                 DetalleVenta detVentaNuevo = new DetalleVenta(cantidad, venta, prodComboBox);
                 detVentData.guardarDetalleVenta(detVentaNuevo);
-                textIdDetalleVenta.setText(detVentaNuevo.getIdDetalleVenta()+"");
-            }catch(InputMismatchException ex){
+                textIdDetalleVenta.setText(detVentaNuevo.getIdDetalleVenta() + "");
+                int s = proData.buscarProductoStock(prodComboBox.getIdProducto());
+
+                int nc = s - cantidad;
+                prodComboBox.setStock(nc);
+                textStock.setText(nc+"");
+                proData.modificarStockProducto(prodComboBox);
+                JOptionPane.showMessageDialog(this, "El nuevo stock es: " + nc);
+            } catch (InputMismatchException ex) {
                 JOptionPane.showMessageDialog(null, "Ingrese un producto y una cantidad");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese un producto y una cantidad");
         }
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         int cantidad = Integer.parseInt(textCantidad.getText());
         Venta ventaBuscada = detVentData.buscarDetalleVenta(idDetVenta).getVenta();
-        if (prodComboBox.getIdProducto()>0){
+        if (prodComboBox.getIdProducto() > 0) {
             DetalleVenta detModificado = new DetalleVenta(idDetVenta, cantidad, ventaBuscada, prodComboBox);
             detVentData.modificarDetalleVenta(detModificado);
-        }else{
+        } else {
             Producto productoOrig = detVentData.buscarDetalleVenta(idDetVenta).getProducto();
             DetalleVenta detModificado = new DetalleVenta(idDetVenta, cantidad, ventaBuscada, productoOrig);
-            detVentData.modificarDetalleVenta(detModificado);            
+            detVentData.modificarDetalleVenta(detModificado);
         }
-        
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -327,17 +361,18 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void cmbProdNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProdNombreActionPerformed
         // TODO add your handling code here:
-        if(cmbProdNombre.getSelectedItem()!=null){
-            Producto producto = (Producto)cmbProdNombre.getSelectedItem();
+        if (cmbProdNombre.getSelectedItem() != null) {
+            Producto producto = (Producto) cmbProdNombre.getSelectedItem();
             prodComboBox = producto;
-            if (producto.getIdProducto()>0){
-            textProducto.setText(producto.getNombre());
-            textProdDetalle.setText(producto.getDescripcion());
-            textPrecioProducto.setText(producto.getPrecioActual()+"");
-            textCantidad.setText("");
-            textPrecioVenta.setText("");
-            }else{
-                if (!"".equals(textIdDetalleVenta.getText())){
+            if (producto.getIdProducto() > 0) {
+                textProducto.setText(producto.getNombre());
+                textProdDetalle.setText(producto.getDescripcion());
+                textPrecioProducto.setText(producto.getPrecioActual() + "");
+                textCantidad.setText("");
+                textPrecioVenta.setText("");
+                textStock.setText(producto.getStock()+"");
+            } else {
+                if (!"".equals(textIdDetalleVenta.getText())) {
                     cargarDatos(idDetVenta);
                 }
             }
@@ -345,9 +380,56 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbProdNombreActionPerformed
 
     private void btnPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrecioActionPerformed
-        // TODO add your handling code here:
+//        int id = prodComboBox.getIdProducto();
+//        int stk = proData.buscarProductoStock(id);
+//        int t = Integer.parseInt(textCantidad.getText());
+//        if (t > stk) {
+//            JOptionPane.showMessageDialog(this, "Pida una cantidad menor al stock");
+//        } else {
         cargarPrecioVenta();
+
     }//GEN-LAST:event_btnPrecioActionPerformed
+
+    private void textIdDetalleVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIdDetalleVentaKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro = k == 8;
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textIdDetalleVenta.setText("");
+            textIdDetalleVenta.requestFocus();
+        }
+    }//GEN-LAST:event_textIdDetalleVentaKeyTyped
+
+    private void textPrecioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPrecioProductoKeyTyped
+        int k = evt.getKeyChar();
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro = k == 8;
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textPrecioProducto.setText("");
+            textPrecioProducto.requestFocus();
+        }
+    }//GEN-LAST:event_textPrecioProductoKeyTyped
+
+    private void textCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadKeyTyped
+        int k = evt.getKeyChar();
+
+        boolean numeros = k >= 48 && k <= 57;
+        boolean retro = k == 8;
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textCantidad.setText("");
+            textCantidad.requestFocus();
+        }
+
+
+    }//GEN-LAST:event_textCantidadKeyTyped
+
+    private void textCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCantidadActionPerformed
+
+
+    }//GEN-LAST:event_textCantidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -370,6 +452,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textPrecioVenta;
     private javax.swing.JTextField textProdDetalle;
     private javax.swing.JTextField textProducto;
+    private javax.swing.JLabel textStock;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCategorias() {
@@ -380,36 +463,46 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void cargarProductos() {
         cmbProdNombre.removeAllItems();
-        Producto opcionDef = new Producto(0,"Seleccione un producto", "", "", 0.0, 0, isIcon);
+        Producto opcionDef = new Producto(0, "Seleccione un producto", "", "", 0.0, 0, isIcon);
         cmbProdNombre.addItem(opcionDef);
-        String categ = (String)cmbProdCategoria.getSelectedItem();
-        listaProductos = (ArrayList)proData.buscarProductoCategoria(categ);
+        String categ = (String) cmbProdCategoria.getSelectedItem();
+        listaProductos = (ArrayList) proData.buscarProductoCategoria(categ);
         for (Producto producto : listaProductos) {
             cmbProdNombre.addItem(producto);
         }
     }
-    
-    private void cargarPrecioVenta(){
-        String cantidadTxt = textCantidad.getText();
-        if(!"".equals(cantidadTxt)){
-            int cantidad = Integer.parseInt(cantidadTxt);
+
+    private void cargarPrecioVenta() {
+        int id = prodComboBox.getIdProducto();
+        int stk = proData.buscarProductoStock(id);
+        String cant = textCantidad.getText();
+        //String cantidadTxt = textCantidad.getText();
+        // if (!"".equals(cant)) {
+
+        int t = Integer.parseInt(cant);
+
+        if (t < stk || t == stk) {
+            //  int cantidad = Integer.parseInt(cantidadTxt);
             double precioActual = Double.parseDouble(textPrecioProducto.getText());
-            double precioVenta = cantidad * precioActual;
-            textPrecioVenta.setText(precioVenta+"");
+            double precioVenta = t * precioActual;
+            textPrecioVenta.setText(precioVenta + "");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Pida una cantidad menor al stock");
         }
+//        } else {
+//            JOptionPane.showMessageDialog(this,"Ingrese una cantidad");
+
     }
 
     private void cargarDatos(int idDetVenta) {
         DetalleVenta detVenta = detVentData.buscarDetalleVenta(idDetVenta);
-        textIdDetalleVenta.setText(idDetVenta+"");
+        textIdDetalleVenta.setText(idDetVenta + "");
         textProducto.setText(detVenta.getProducto().getNombre());
         textProdDetalle.setText(detVenta.getProducto().getDescripcion());
-        textPrecioProducto.setText(detVenta.getProducto().getPrecioActual()+"");
-        textCantidad.setText(detVenta.getCantidad()+"");
-        textPrecioVenta.setText(detVenta.getPrecioVenta()+"");
+        textPrecioProducto.setText(detVenta.getProducto().getPrecioActual() + "");
+        textCantidad.setText(detVenta.getCantidad() + "");
+        textPrecioVenta.setText(detVenta.getPrecioVenta() + "");
     }
-    
-   
-    
-    
+
 }

@@ -81,11 +81,14 @@ public class Fravemaxg10 {
         // y una vez guardado el producto, se llena el combobox nuevamente
         // mediante función.
         ProductoData proData = new ProductoData();
-        //Producto prod = new Producto("TV Samsung FHD", "de 100 pulgadas", "Televisor", 120000, 50, true);
+        
+        Producto prod = new Producto("TV Samsung FHD", "de 100 pulgadas", "Televisor", 120000, 50, true);
         // Guardar OK
         //proData.guardarProducto(prod);
         // Buscar OK
-        //System.out.println(proData.buscarProductoId(7));
+        System.out.println(proData.buscarProductoStock(7));
+       // System.out.println(proData.buscarProductoId(7));
+        
         // Modificar OK
         /*Producto prod = new Producto(7, "TV Samsung FHD", "de 70 pulgadas", "Televisor", 140000, 25, true);
         proData.modificarProducto(prod);

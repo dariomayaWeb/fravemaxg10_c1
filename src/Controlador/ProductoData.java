@@ -71,6 +71,52 @@ public class ProductoData {
         return producto;
 
     }
+    
+    public void modificarStockProducto(Producto producto){
+   // Producto producto= new Producto();
+          try {
+            PreparedStatement ps = con.prepareStatement("UPDATE producto SET stock=? WHERE idProducto=?");
+//            ps.setString(1, producto.getNombre());
+//            ps.setString(2, producto.getDescripcion());
+//            ps.setString(3, producto.getCategoria());
+//            ps.setDouble(4, producto.getPrecioActual());
+            ps.setInt(1, producto.getStock());
+//            ps.setBoolean(6, producto.isEstado());
+            ps.setInt(2, producto.getIdProducto());
+            ps.executeUpdate();
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Stock acualizado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El stock no se actualizó.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + "producto" + ex.getMessage());
+        }
+        
+    }
+
+    public int buscarProductoStock(int id) {
+        Producto producto = null;
+        int stk = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT stock FROM producto where idProducto= ?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                producto = new Producto();
+                producto.setStock(rs.getInt("stock"));
+                stk = producto.getStock();
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, msjeError + " buscar stock " + ex.getMessage());
+        }
+        return stk;
+    }
 
     public List<Producto> listar() {
         ArrayList<Producto> lista = new ArrayList();
@@ -122,7 +168,7 @@ public class ProductoData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Porducto eliminado");
+            JOptionPane.showMessageDialog(null, "Producto eliminado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al intentar eliminar");
         }
@@ -181,16 +227,16 @@ public class ProductoData {
             } else {
                 JOptionPane.showMessageDialog(null, "El producto no existe.");
             }
-            ps.close();            
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msjeError + "producto" + ex.getMessage());
         }
     }
 
-    public List<String> listarCategorias(){
+    public List<String> listarCategorias() {
         List listaCategorias = new ArrayList();
         ArrayList<Producto> listaProductos = new ArrayList();
-        listaProductos = (ArrayList)this.listar();
+        listaProductos = (ArrayList) this.listar();
         for (Producto producto : listaProductos) {
             String cat = producto.getCategoria();
             listaCategorias.add(cat);
@@ -201,7 +247,7 @@ public class ProductoData {
         Collections.sort(listaCategorias);
         return listaCategorias;
     }
-    
+
     public List<Producto> buscarProductosCoincidenciaPorNombre(String coincidencia) {
         ArrayList<Producto> lista = new ArrayList();
         try {
@@ -225,8 +271,8 @@ public class ProductoData {
         }
         return lista;
     }
-    
-     public List<Producto> buscarProductosCoincidenciaPorCateg(String coincidencia) {
+
+    public List<Producto> buscarProductosCoincidenciaPorCateg(String coincidencia) {
         ArrayList<Producto> lista = new ArrayList();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE categoria like ?  '%' AND estado=1");

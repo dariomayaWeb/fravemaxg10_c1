@@ -422,20 +422,19 @@ public class ClienteView extends javax.swing.JInternalFrame {
         boolean espacio =k == 32;
         if (!(letras || retro || espacio)) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
-            textClienteDni.setText("");
-            textClienteDni.requestFocus();
+            textClienteNombre.setText("");
+            textClienteNombre.requestFocus();
         }
     }//GEN-LAST:event_textClienteNombreKeyTyped
 
     private void textClienteApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textClienteApellidoKeyTyped
          int k = evt.getKeyChar();
-        boolean letras = k >= 65 && k <= 122;
+        boolean numeros = k >= 48 && k <= 57;
         boolean retro =k == 8;
-        boolean espacio =k == 32;
-        if (!(letras || retro || espacio)) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un apellido");
-            textClienteDni.setText("");
-            textClienteDni.requestFocus();
+        if (!(numeros || retro)) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar números");
+            textClienteId.setText("");
+            textClienteId.requestFocus();
         }
     }//GEN-LAST:event_textClienteApellidoKeyTyped
 
@@ -446,8 +445,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
         boolean espacio =k == 32;
         if (!(numeros || retro || espacio)) {
             JOptionPane.showMessageDialog(this, "Debe ingresar números");
-            textClienteDni.setText("");
-            textClienteDni.requestFocus();
+            textClienteTelefono.setText("");
+            textClienteTelefono.requestFocus();
         }
     }//GEN-LAST:event_textClienteTelefonoKeyTyped
 
