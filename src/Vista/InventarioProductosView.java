@@ -45,6 +45,8 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jTextBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -100,6 +102,7 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
         jTable1.setPreferredSize(new java.awt.Dimension(300, 250));
         jScrollPane1.setViewportView(jTable1);
 
+        buttonGroup1.add(jRbCategoria);
         jRbCategoria.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jRbCategoria.setText("Categoria");
         jRbCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +111,7 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonGroup1.add(jRbNombre);
         jRbNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jRbNombre.setText("Nombre");
         jRbNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +152,7 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBLimpiar))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Salir)
@@ -183,18 +187,20 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
            if(jRbCategoria.isSelected()){
                 lista=(ArrayList<Producto>)productoData.buscarProductosCoincidenciaPorCateg(jTextBuscar.getText());
                 llenarTabla(lista);
-            }
-            if(lista.isEmpty()){
-                JOptionPane.showMessageDialog(this, "No hay productos");
+                if(lista.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No hay productos en la categoria");
        }
+            }
+            
        if(jRbNombre.isSelected()){
                 lista=(ArrayList<Producto>)productoData.buscarProductosCoincidenciaPorNombre(jTextBuscar.getText());
                 llenarTabla(lista);
-            }
-            if(lista.isEmpty()){
-                JOptionPane.showMessageDialog(this, "No hay productos");
+                  if(lista.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No hay productos con el nombre");
            
        }
+            }
+          
         if(jTextBuscar.getText().trim().equals("")){
     JOptionPane.showMessageDialog(this, "Llene el campo");
             
@@ -262,6 +268,8 @@ public class InventarioProductosView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salir;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRbCategoria;

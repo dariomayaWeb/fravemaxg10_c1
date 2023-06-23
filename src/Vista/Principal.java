@@ -91,7 +91,6 @@ public class Principal extends javax.swing.JFrame {
 
         EscritorioPrinc.setMaximumSize(new java.awt.Dimension(800, 600));
         EscritorioPrinc.setMinimumSize(new java.awt.Dimension(800, 600));
-        EscritorioPrinc.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout EscritorioPrincLayout = new javax.swing.GroupLayout(EscritorioPrinc);
         EscritorioPrinc.setLayout(EscritorioPrincLayout);
